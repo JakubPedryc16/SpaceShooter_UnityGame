@@ -4,7 +4,7 @@ using System;
 
 public class AudioManager : MonoBehaviour {
 
-
+    string filler = "AUDIOMANAGER";
     public Sound[] sounds;
     public AudioSource music;
     bool bossMusic = false;
