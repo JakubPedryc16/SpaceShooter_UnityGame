@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1300157738714722}
+  m_IsPrefabAsset: 1
+--- !u!1 &1300157738714722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4379953716070838}
+  - component: {fileID: 114700197949885956}
+  m_Layer: 0
+  m_Name: Chapter1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4379953716070838
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300157738714722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114700197949885956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300157738714722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5959b19fc81004eb276cfb689a0d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  YouWonObject: {fileID: 0}
+  YouLostObject: {fileID: 0}
+  timeAfterWave: 2
+  waveNum: 0
+  enemyToSpawn: 0
+  enemiesLeft: 0
+  _cooldown: 0
+  effectorSpawned: 0
+  waves:
+  - enemies:
+    - type: 0
+      spawnChance: 100
+    amount: 20
+    cooldown: 1.4
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 0
+      spawnChance: 70
+    - type: 1
+      spawnChance: 25
+    - type: 901
+      spawnChance: 5
+    amount: 18
+    cooldown: 1.6
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 0
+      spawnChance: 50
+    - type: 1
+      spawnChance: 25
+    - type: 2
+      spawnChance: 21
+    - type: 901
+      spawnChance: 4
+    amount: 32
+    cooldown: 1
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 1
+      spawnChance: 27
+    - type: 2
+      spawnChance: 70
+    - type: 901
+      spawnChance: 3
+    amount: 25
+    cooldown: 1
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 1
+      spawnChance: 40
+    - type: 3
+      spawnChance: 56
+    - type: 901
+      spawnChance: 4
+    amount: 12
+    cooldown: 1
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 2
+      spawnChance: 70
+    - type: 4
+      spawnChance: 31
+    - type: 901
+      spawnChance: 4
+    amount: 15
+    cooldown: 1
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 2
+      spawnChance: 68
+    - type: 3
+      spawnChance: 23
+    - type: 5
+      spawnChance: 5
+    - type: 901
+      spawnChance: 4
+    amount: 22
+    cooldown: 0.7
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 0
+      spawnChance: 82
+    - type: 6
+      spawnChance: 12
+    - type: 901
+      spawnChance: 6
+    amount: 40
+    cooldown: 1
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 0
+      spawnChance: 16
+    - type: 1
+      spawnChance: 16
+    - type: 2
+      spawnChance: 16
+    - type: 3
+      spawnChance: 16
+    - type: 4
+      spawnChance: 16
+    - type: 5
+      spawnChance: 8
+    - type: 6
+      spawnChance: 6
+    - type: 901
+      spawnChance: 6
+    amount: 50
+    cooldown: 1.2
+    bossWave: 0
+    bossType: 0
+  - enemies: []
+    amount: 1
+    cooldown: 0
+    bossWave: 1
+    bossType: 1
