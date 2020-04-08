@@ -37,7 +37,6 @@ public class SpawnManager : MonoBehaviour {
 
     void Start()
     {
-        _cooldown = timeAfterWave * Informations.difficultyStats[Informations.statistics[5]].waveCooldownsMultiplier;
         enemiesLeft = waves[waveNum].amount;
     }
 
@@ -105,7 +104,6 @@ public class SpawnManager : MonoBehaviour {
                     {
                         waveNum++;
                         enemiesLeft = waves[waveNum].amount;
-                        _cooldown = timeAfterWave * Informations.difficultyStats[Informations.statistics[5]].waveCooldownsMultiplier;
                     }
                 }
             }

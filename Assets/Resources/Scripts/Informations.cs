@@ -159,12 +159,36 @@ public class Informations {
     {
         40f,20f,20f,30f
     };
-    public static DifficultyStats[] difficultyStats = new DifficultyStats[4]
+    public static DifficultyStats[] difficultyStats = new DifficultyStats[3]
         {
-            new DifficultyStats (0.75f,0.8f,0.75f,0.75f,1.2f,0.75f,1.2f,0.75f,0.85f,-1,1.2f,0.85f),
-            new DifficultyStats (1f,1f,1f,1f,1f,1f,1f,1f,1f,0,1f,1f),
-            new DifficultyStats (1.2f,1.06f,1.2f,1.2f,0.8f,1.2f,0.8f,1.2f,1.05f,1,0.95f,1.15f),
-            new DifficultyStats (1.4f,1.06f,1.4f,1.4f,0.7f,1.4f,0.7f,1.4f,1.1f,3,0.9f,1.35f)
+            new DifficultyStats (
+                _enemyHealthMultiplier: 0.75f,
+                _enemyMovementSpeedMultiplier: 0.8f,
+                _enemyDamageMultiplier: 0.6f,
+                _enemyBulletSpeedMultiplier: 0.8f,
+                _enemyAbilityCooldownsMultiplier: 0.75f,
+                _bossDamageMultiplier: 0.6f,
+                _bossCooldownsMultiplier: 1.35f,
+                _bossHealthMultiplier: 0.8f,
+                _additionalBossMoves: -1,
+                _timeMeterTempo: 1.2f,
+                _timeMeterLimits: 0.8f
+            ),
+            new DifficultyStats (1f,1f,1f,1f,1f,1f,1f,1f,0,1f,1f),
+            //new DifficultyStats (1.2f,1.06f,1.2f,1.2f,0.8f,1.2f,0.8f,1.2f,1.05f,1,0.95f,1.15f),
+            new DifficultyStats (
+                _enemyHealthMultiplier: 1.2f,
+                _enemyMovementSpeedMultiplier: 1.06f,
+                _enemyDamageMultiplier: 1.2f,
+                _enemyBulletSpeedMultiplier: 1.2f,
+                _enemyAbilityCooldownsMultiplier: 1.35f,
+                _bossDamageMultiplier: 1.1f,
+                _bossCooldownsMultiplier: 0.75f,
+                _bossHealthMultiplier: 1.2f,
+                _additionalBossMoves: 2,
+                _timeMeterTempo: 0.8f,
+                _timeMeterLimits: 1.4f
+            )
         };
     public class DifficultyStats
     {
@@ -175,14 +199,24 @@ public class Informations {
         public float enemyAbilityCooldownsMultiplier = 1f;
         public float bossDamageMultiplier = 1f;
         public float bossCooldownsMultiplier = 1f;
-        public float bossHealthHealthMultiplier = 1f;
-        public float waveCooldownsMultiplier = 1f;
+        public float bossHealthMultiplier = 1f;
         public int additionalBossMoves = 0;
         public float timeMeterTempo = 1f;
         public float timeMeterLimits = 1f;
 
-        public DifficultyStats(float _enemyHealthMultiplier, float _enemyMovementSpeedMultiplier, float _enemyDamageMultiplier, float _enemyBulletSpeedMultiplier, float _enemyAbilityCooldownsMultiplier, float _bossDamageMultiplier, float _bossCooldownsMultiplier, float _bossHealthHealthMultiplier,float _waveCooldownsMultiplier,int _additionalBossMoves,float _timeMeterTempo,float _timeMeterLimits)
-        {
+        public DifficultyStats (
+            float _enemyHealthMultiplier,
+            float _enemyMovementSpeedMultiplier,
+            float _enemyDamageMultiplier,
+            float _enemyBulletSpeedMultiplier,
+            float _enemyAbilityCooldownsMultiplier,
+            float _bossDamageMultiplier,
+            float _bossCooldownsMultiplier,
+            float _bossHealthMultiplier,
+            int _additionalBossMoves,
+            float _timeMeterTempo,
+            float _timeMeterLimits
+        ){
             enemyHealthMultiplier = _enemyHealthMultiplier;
             enemyMovementSpeedMultiplier = _enemyMovementSpeedMultiplier;
             enemyDamageMultiplier = _enemyDamageMultiplier;
@@ -190,8 +224,7 @@ public class Informations {
             enemyAbilityCooldownsMultiplier = _enemyAbilityCooldownsMultiplier;
             bossDamageMultiplier = _bossDamageMultiplier;
             bossCooldownsMultiplier = _bossCooldownsMultiplier;
-            bossHealthHealthMultiplier = _bossHealthHealthMultiplier;
-            waveCooldownsMultiplier = _waveCooldownsMultiplier;
+            bossHealthMultiplier = _bossHealthMultiplier;
             additionalBossMoves = _additionalBossMoves;
             timeMeterTempo = _timeMeterTempo;
             timeMeterLimits = _timeMeterLimits;

@@ -12210,7 +12210,7 @@ GameObject:
   - component: {fileID: 2084279305}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: audioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12230,13 +12230,13 @@ MonoBehaviour:
   sounds:
   - name: LaserSound0
     Clip: {fileID: 8300000, guid: 0586263d5dae36e47a60189f28f64666, type: 3}
-    volume: 0.66
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: HitSound
     Clip: {fileID: 8300000, guid: ac1d63732b05c434bb07a4ead1856595, type: 3}
-    volume: 0.75
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -12260,20 +12260,27 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: EnemyShotSound1
     Clip: {fileID: 8300000, guid: 014f91f80948de240ae73c890895abca, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   music: {fileID: 2084279305}
+  bossMusic: 0
+  changeMusic: 0
   galaxyTracks:
   - musicClips:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - musicClips: []
-  - musicClips: []
+    - {fileID: 8300000, guid: a394b98e32f66c54bb7b82c4b77308ae, type: 3}
+    - {fileID: 8300000, guid: 081c053e71f2fa04398748766643556d, type: 3}
+    - {fileID: 8300000, guid: 74863f562b368214799fe48546fc93c1, type: 3}
+    - {fileID: 8300000, guid: 84180d62effd88e4ba5f49a1f157f5ff, type: 3}
+    - {fileID: 8300000, guid: da8865cf3c8c9114487639c9e0e969dc, type: 3}
+    - {fileID: 8300000, guid: dc58dc90f48543945afc4103b3db8e01, type: 3}
+  - musicClips:
+    - {fileID: 8300000, guid: 190d5e16ba0c0654aa9257355cda2ead, type: 3}
+    - {fileID: 8300000, guid: da8865cf3c8c9114487639c9e0e969dc, type: 3}
+  - musicClips:
+    - {fileID: 8300000, guid: dc58dc90f48543945afc4103b3db8e01, type: 3}
+    - {fileID: 8300000, guid: dc58dc90f48543945afc4103b3db8e01, type: 3}
   - musicClips: []
   - musicClips: []
 --- !u!4 &2084279304

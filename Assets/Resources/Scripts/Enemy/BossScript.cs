@@ -10,6 +10,7 @@ public class BossScript : MonoBehaviour  {
     public float bodyDamage;
     public int num;
     GameMaster gameMaster;
+    public bool isFinalBoss;
     
     // Use this for initialization
     void Start()
@@ -28,8 +29,9 @@ public class BossScript : MonoBehaviour  {
         {
             GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
         }
-        if (health <= 0)
+        if (health <= 0 && isFinalBoss == true)
         {
+
             FindObjectOfType<AudioManager>().Play("DeathSound");
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
             for(int i = 0;i < enemies.Length; i++)
@@ -46,13 +48,26 @@ public class BossScript : MonoBehaviour  {
             }
             Destroy(this.gameObject);
         }
+        else if(health <= 0)
+        {
+            if(gameObject.GetComponent<SpriteRenderer>().sprite != Resources.Load<Sprite>($"Sprites/Bosses/boss{num}_0"))
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>($"Sprites/Bosses/boss{num}_0");
+            }
+            transform.position += transform.TransformDirection(Vector3.right * 1f * Time.deltaTime);
+            if(transform.position.x > 10f)
+            {
+                GameObject.FindGameObjectWithTag("audioManager").GetComponent<AudioManager>().bossMusic = false;
+                GameObject.FindGameObjectWithTag("audioManager").GetComponent<AudioManager>().changeMusic = true;
+                Destroy(this.gameObject);               
+            }
+        }
     }
     public void LoadStatistics()
     {
-        bodyDamage *= Informations.difficultyStats[Informations.statistics[5]].bossDamageMultiplier;
         GetComponent<BossTricks>().attacksCooldown *= Informations.difficultyStats[Informations.statistics[5]].bossCooldownsMultiplier;
         GetComponent<BossTricks>().bossRestingTime *= Informations.difficultyStats[Informations.statistics[5]].bossCooldownsMultiplier;
-        startHealth *= Informations.difficultyStats[Informations.statistics[5]].bossHealthHealthMultiplier;
+        startHealth *= Informations.difficultyStats[Informations.statistics[5]].bossHealthMultiplier;
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

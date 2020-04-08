@@ -20,6 +20,7 @@ TagManager:
   - firstChapterWinObject
   - potion
   - explosion
+  - audioManager
   layers:
   - Default
   - TransparentFX

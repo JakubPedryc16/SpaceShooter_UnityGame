@@ -7,7 +7,8 @@ public class AudioManager : MonoBehaviour {
     string filler = "AUDIOMANAGER";
     public Sound[] sounds;
     public AudioSource music;
-    bool bossMusic = false;
+    public bool bossMusic = false;
+    public bool changeMusic = false;
     int musicNum;
     GameMaster gm;
 
@@ -30,32 +31,47 @@ public class AudioManager : MonoBehaviour {
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-        
+
     }
     void Start()
-    { 
+    {
         gm = GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>();
         musicNum = UnityEngine.Random.Range(0, 4);
-        music.clip = Resources.Load<AudioClip>("Sounds/Music/Clip" + Informations.statistics[0] + "" + UnityEngine.Random.Range(0, 4));
+        music.clip = galaxyTracks[Informations.statistics[0]].musicClips[UnityEngine.Random.Range(0, galaxyTracks[Informations.statistics[0]].musicClips.Length - 2)];
+        //music.clip = Resources.Load<AudioClip>("Sounds/Music/Clip" + Informations.statistics[0] + "" + UnityEngine.Random.Range(0, 4));
         music.Play();
     }
     void Update()
     {
-       if(!music.isPlaying && !gm.bossHealth.activeSelf)
+        if (!music.isPlaying && !gm.bossHealth.activeSelf || changeMusic == true)
         {
             musicNum += 1;
             if (musicNum >= 4)
             {
                 musicNum = 0;
             }
-            music.clip = Resources.Load<AudioClip>("Sounds/Music/Clip" + Informations.statistics[0] +""+ musicNum);
+            changeMusic = false;
+            music.clip = galaxyTracks[Informations.statistics[0]].musicClips[UnityEngine.Random.Range(0, galaxyTracks[Informations.statistics[0]].musicClips.Length - 2)];
             music.Play();
         }
-       else if(gm.bossHealth.activeSelf == true && bossMusic == false)
+       else if(gm.bossHealth.activeSelf == true && bossMusic == false || bossMusic == true && !music.isPlaying)
         {
-            music.clip = Resources.Load<AudioClip>("Sounds/Music/Clip04");
-            music.Play();
-            bossMusic = true;
+            if(GameObject.FindGameObjectWithTag("boss") != null)
+            {
+                if(GameObject.FindGameObjectWithTag("boss").GetComponent<BossScript>().isFinalBoss == true)
+                {
+                    music.clip = galaxyTracks[Informations.statistics[0]].musicClips[galaxyTracks[Informations.statistics[0]].musicClips.Length - 1];
+                    music.Play();
+                    bossMusic = true;
+                }
+                else
+                {
+                    music.clip = galaxyTracks[Informations.statistics[0]].musicClips[galaxyTracks[Informations.statistics[0]].musicClips.Length - 2];
+                    music.Play();
+                    bossMusic = true;
+                }
+            }
+
         }
     }
     public void Play (string name)

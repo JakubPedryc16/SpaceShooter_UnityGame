@@ -85,12 +85,14 @@ public class GameMaster : MonoBehaviour {
         {
             bossHealth.SetActive(true);
             bossHealthShadow.SetActive(true);
+            bossLostHealth.SetActive(true);
             bossHealth.GetComponent<Image>().fillAmount = GameObject.FindGameObjectWithTag("boss").GetComponent<BossScript>().health / GameObject.FindGameObjectWithTag("boss").GetComponent<BossScript>().startHealth;
         }
         else
         {
             bossHealth.SetActive(false);
             bossHealthShadow.SetActive(false);
+            bossLostHealth.SetActive(false);
 
         }
         moneyText.GetComponent<Text>().text ="" + (moneyStatus) ;       
@@ -132,6 +134,9 @@ public class GameMaster : MonoBehaviour {
         {
             Informations.statistics[4] = Informations.statistics[0] + 1;
             firstTimeBossKillText.text = firstTimeBossKillString[Informations.statistics[0]];
+
+
+
             scoreTextWin.text = "Basic Money: " + (moneyStatus - bossRewards[Informations.statistics[0],0]) + "\nTimeMeter Bonus: " + (int)(((moneyStatus - bossRewards[Informations.statistics[0], 0]) * (time / TMtime)) - moneyStatus + bossRewards[Informations.statistics[0], 0]) + "\nWin Bonus (TimeMeter bonus x1.2): " + (int)(((((moneyStatus - bossRewards[Informations.statistics[0], 0]) * (time / TMtime)) - moneyStatus + bossRewards[Informations.statistics[0], 0]) * 1.2f) - (((moneyStatus - bossRewards[Informations.statistics[0], 0])* (time / TMtime)) - moneyStatus + bossRewards[Informations.statistics[0],0])) + "\nYou Get: " + (int)(((moneyStatus - bossRewards[Informations.statistics[0], 0] )* (time / TMtime)) + (int)(((((moneyStatus - bossRewards[Informations.statistics[0], 0]) * (time / TMtime)) - moneyStatus + bossRewards[Informations.statistics[0], 0]) * 1.2f) - (((moneyStatus - bossRewards[Informations.statistics[0], 0]) * (time / TMtime)) - moneyStatus + bossRewards[Informations.statistics[0], 0]))) + " and boss reward: " + bossRewards[Informations.statistics[0], 0];
             EarnMoney((int)(((moneyStatus - bossRewards[Informations.statistics[0], 0]) * (time / TMtime)) - moneyStatus + bossRewards[Informations.statistics[0], 0]) + (int)(((((moneyStatus - bossRewards[Informations.statistics[0], 0]) * (time / TMtime)) - moneyStatus + bossRewards[Informations.statistics[0], 0]) * 1.2f) - (((moneyStatus - bossRewards[Informations.statistics[0], 0]) * (time / TMtime)) - moneyStatus + bossRewards[Informations.statistics[0], 0])));
         }

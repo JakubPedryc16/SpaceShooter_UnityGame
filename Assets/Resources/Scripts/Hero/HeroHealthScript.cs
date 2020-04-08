@@ -106,20 +106,20 @@ public class HeroHealthScript : MonoBehaviour {
         string _tag = col.gameObject.tag;
         if (_tag == "enemyBullet" && immunity <= 0f)
         {
-            HurtHero(col.GetComponent<EnemyBulletMobility>().damage);
+            HurtHero(col.GetComponent<EnemyBulletMobility>().damage * Informations.difficultyStats[Informations.statistics[5]].enemyDamageMultiplier);
             immunity = basicImmunity;
         }
         else if(_tag == "enemy" && immunity <= 0f)
         {
             if (col.GetComponent<EnemyHealth>().heroDmg != 0)
             {
-                HurtHero(col.GetComponent<EnemyHealth>().heroDmg);
+                HurtHero(col.GetComponent<EnemyHealth>().heroDmg * Informations.difficultyStats[Informations.statistics[5]].enemyDamageMultiplier);
                 immunity = basicImmunity;
             }
         }
         else if(_tag == "boss" && immunity <= 0f)
         {
-            HurtHero(col.GetComponent<BossScript>().bodyDamage * Informations.difficultyStats[Informations.statistics[5]].bossDamageMultiplier);
+            HurtHero(col.GetComponent<BossScript>().bodyDamage * Informations.difficultyStats[Informations.statistics[5]].enemyDamageMultiplier);
             immunity = basicImmunity;
         }
     }
