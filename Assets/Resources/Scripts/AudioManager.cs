@@ -4,7 +4,7 @@ using System;
 
 public class AudioManager : MonoBehaviour {
 
-    string filler = "AUDIOMANAGER";
+
     public Sound[] sounds;
     public AudioSource music;
     public bool bossMusic = false;
@@ -37,8 +37,7 @@ public class AudioManager : MonoBehaviour {
     {
         gm = GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>();
         musicNum = UnityEngine.Random.Range(0, 4);
-        music.clip = galaxyTracks[Informations.statistics[0]].musicClips[UnityEngine.Random.Range(0, galaxyTracks[Informations.statistics[0]].musicClips.Length - 2)];
-        //music.clip = Resources.Load<AudioClip>("Sounds/Music/Clip" + Informations.statistics[0] + "" + UnityEngine.Random.Range(0, 4));
+        music.clip = galaxyTracks[Informations.statistics[0]].musicClips[UnityEngine.Random.Range(0, galaxyTracks[Informations.statistics[0]].musicClips.Length - 2)];  
         music.Play();
     }
     void Update()
