@@ -106,6 +106,13 @@ MonoBehaviour:
     bossWave: 0
     bossType: 0
   - enemies:
+    - type: 1
+      spawnChance: 40
+    amount: 1
+    cooldown: 1
+    bossWave: 1
+    bossType: 100
+  - enemies:
     - type: 2
       spawnChance: 70
     - type: 4
@@ -161,6 +168,15 @@ MonoBehaviour:
     cooldown: 1.2
     bossWave: 0
     bossType: 0
+  - enemies:
+    - type: 4
+      spawnChance: 80
+    - type: 8
+      spawnChance: 20
+    amount: 30
+    cooldown: 1
+    bossWave: 0
+    bossType: 0
   - enemies: []
     amount: 1
     cooldown: 0
@@ -170,4 +186,14 @@ MonoBehaviour:
     amount: 1
     cooldown: 0
     bossWave: 1
-    bossType: 0
+    bossType: 100
+  - enemies: []
+    amount: 1
+    cooldown: 0
+    bossWave: 1
+    bossType: 100
+  - enemies: []
+    amount: 1
+    cooldown: 0
+    bossWave: 1
+    bossType: 100

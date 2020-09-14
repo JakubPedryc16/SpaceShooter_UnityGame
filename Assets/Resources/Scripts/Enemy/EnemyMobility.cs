@@ -14,6 +14,9 @@ public class EnemyMobility : MonoBehaviour {
     {
         actualSpeed = wantedSpeed;
         basicSpeed = wantedSpeed;
+        basicSpeed *= Informations.difficultyStats[Informations.statistics[5]].enemyMovementSpeedMultiplier;
+        wantedSpeed *= Informations.difficultyStats[Informations.statistics[5]].enemyMovementSpeedMultiplier;
+
     }
     void Update () {
         if(timeLeft >= 0)

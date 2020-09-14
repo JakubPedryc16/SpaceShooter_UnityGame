@@ -53,29 +53,29 @@ MonoBehaviour:
   effectorSpawned: 0
   waves:
   - enemies:
-    - type: 7
+    - type: 11
       spawnChance: 70
-    - type: 8
+    - type: 12
       spawnChance: 30
     amount: 32
     cooldown: 1.2
     bossWave: 0
     bossType: 0
   - enemies:
-    - type: 7
+    - type: 11
       spawnChance: 50
-    - type: 9
+    - type: 13
       spawnChance: 50
     amount: 36
     cooldown: 1.1
     bossWave: 0
     bossType: 0
   - enemies:
-    - type: 7
+    - type: 11
       spawnChance: 34
-    - type: 8
+    - type: 12
       spawnChance: 33
-    - type: 9
+    - type: 13
       spawnChance: 33
     amount: 48
     cooldown: 1
@@ -91,13 +91,13 @@ MonoBehaviour:
     bossWave: 0
     bossType: 0
   - enemies:
-    - type: 7
+    - type: 11
       spawnChance: 25
-    - type: 8
+    - type: 12
       spawnChance: 25
-    - type: 9
+    - type: 13
       spawnChance: 25
-    - type: 10
+    - type: 14
       spawnChance: 25
     amount: 100
     cooldown: 1

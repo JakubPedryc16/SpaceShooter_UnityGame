@@ -22,6 +22,10 @@ public class EnemyHealth : MonoBehaviour {
     public int enemyKind;
     GameMaster gameMaster;
     GameObject hero;
+
+    public delegate void EnemyEvent(GameObject enemyObject);
+    public event EnemyEvent OnDeath;
+
     // Use this for initialization
     void Start () {
         LoadStatistics();
@@ -41,7 +45,7 @@ public class EnemyHealth : MonoBehaviour {
         if(transform.position.x <= -8.7f)
         {
             gameMaster.HurtWall(wallDmg);
-            Destroy(this.gameObject);
+            Death();
         }
 	}
     private void OnTriggerEnter2D(Collider2D col)
@@ -61,7 +65,7 @@ public class EnemyHealth : MonoBehaviour {
                     gameMaster.EarnMoney(crystalsAmount);
                 }
                 hero.GetComponent<HeroSpecialAbility>().GetPoints(pointsForHeroAbility);
-                Destroy(this.gameObject);
+                Death();
             }
             else { FindObjectOfType<AudioManager>().Play("HitSound"); }
         }
@@ -79,7 +83,7 @@ public class EnemyHealth : MonoBehaviour {
                 {
                     gameMaster.EarnMoney(crystalsAmount);
                 }
-                Destroy(this.gameObject);
+                Death();
             }
             else { FindObjectOfType<AudioManager>().Play("HitSound"); }
         }
@@ -89,7 +93,7 @@ public class EnemyHealth : MonoBehaviour {
             if (health <= 0)
             {
                 CheckForLoot();
-                Destroy(this.gameObject);
+                Death();
             }
         }
 
@@ -146,8 +150,6 @@ public class EnemyHealth : MonoBehaviour {
     public void LoadStatistics()
     {
         health *= Informations.difficultyStats[Informations.statistics[5]].enemyHealthMultiplier;
-        GetComponent<EnemyMobility>().basicSpeed *= Informations.difficultyStats[Informations.statistics[5]].enemyMovementSpeedMultiplier;
-        GetComponent<EnemyMobility>().wantedSpeed *= Informations.difficultyStats[Informations.statistics[5]].enemyMovementSpeedMultiplier;
         if (GetComponent<EnemyShooting>() != null)
         {
             GetComponent<EnemyShooting>().damage *= Informations.difficultyStats[Informations.statistics[5]].enemyDamageMultiplier;
@@ -155,4 +157,11 @@ public class EnemyHealth : MonoBehaviour {
             GetComponent<EnemyShooting>().cooldown *= Informations.difficultyStats[Informations.statistics[5]].enemyAbilityCooldownsMultiplier;
         }
     }
+    public void Death()
+    {
+        OnDeath?.Invoke(this.gameObject);
+        Destroy(this.gameObject);
+        
+    }
 }
+

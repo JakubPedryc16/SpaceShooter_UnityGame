@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 50848864920742272}
   - component: {fileID: 114822163053815024}
   - component: {fileID: 114994443480039334}
-  - component: {fileID: 60610729337962058}
   - component: {fileID: 114315635257351588}
+  - component: {fileID: 6209332284951261760}
   m_Layer: 0
   m_Name: Enemy0
   m_TagString: enemy
@@ -144,50 +144,6 @@ MonoBehaviour:
   crystalsAmount: 1
   pointsForHeroAbility: 0.25
   enemyKind: 0
---- !u!60 &60610729337962058
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072531233847142}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.14208984, y: 0.40216064}
-      - {x: -0.17425537, y: 0.40820312}
-      - {x: -0.3192749, y: 0.2836609}
-      - {x: -0.32452393, y: 0.26397705}
-      - {x: -0.35153198, y: 0.21502686}
-      - {x: -0.36568475, y: -0.16277623}
-      - {x: -0.32367086, y: -0.20839632}
-      - {x: -0.2615856, y: -0.31600273}
-      - {x: -0.21664429, y: -0.36378765}
-      - {x: -0.16702402, y: -0.37279034}
-      - {x: -0.12610686, y: -0.38852775}
-      - {x: -0.113517165, y: -0.39167523}
-      - {x: -0.08035815, y: -0.37313437}
-      - {x: 0.009110093, y: -0.36791635}
-      - {x: 0.116972685, y: -0.3253299}
-      - {x: 0.22850466, y: -0.23595917}
-      - {x: 0.30217814, y: -0.09893942}
-      - {x: 0.32525635, y: 0.13433838}
-      - {x: 0.25390625, y: 0.30334473}
 --- !u!114 &114315635257351588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +158,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectNum: 0
   cooldown: 0
+--- !u!70 &6209332284951261760
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072531233847142}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0763073, y: 0.01414603}
+  m_Size: {x: 0.5273266, y: 0.7954477}
+  m_Direction: 0
 --- !u!1 &1086647514953946
 GameObject:
   m_ObjectHideFlags: 0

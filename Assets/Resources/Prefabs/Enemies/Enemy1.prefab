@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 50381817506315140}
   - component: {fileID: 114510692683574568}
   - component: {fileID: 114662247898066784}
-  - component: {fileID: 60505271785858578}
   - component: {fileID: 114744736171431258}
+  - component: {fileID: 1821983955557242745}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: enemy
@@ -223,51 +223,8 @@ MonoBehaviour:
   materialsChance: 1
   itemChance: 1
   crystalsAmount: 3
-  pointsForHeroAbility: 1
+  pointsForHeroAbility: 0.75
   enemyKind: 1
---- !u!60 &60505271785858578
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273261245607764}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.14500713, y: 0.3700682}
-      - {x: -0.03979683, y: 0.44554508}
-      - {x: -0.11250687, y: 0.4427179}
-      - {x: -0.17425537, y: 0.40820312}
-      - {x: -0.3192749, y: 0.2836609}
-      - {x: -0.33619404, y: 0.26397705}
-      - {x: -0.35153198, y: 0.21794438}
-      - {x: -0.3544476, y: -0.1536051}
-      - {x: -0.31479454, y: -0.21027565}
-      - {x: -0.24929786, y: -0.32390726}
-      - {x: -0.15537691, y: -0.40454698}
-      - {x: -0.09063721, y: -0.41354966}
-      - {x: 0.03341055, y: -0.41051626}
-      - {x: 0.13792706, y: -0.33261693}
-      - {x: 0.23372173, y: -0.24071646}
-      - {x: 0.28966022, y: -0.12097168}
-      - {x: 0.32525635, y: 0.13433838}
-      - {x: 0.25098896, y: 0.27416968}
 --- !u!114 &114744736171431258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,3 +239,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectNum: 0
   cooldown: 0
+--- !u!70 &1821983955557242745
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273261245607764}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0763073, y: 0.01414603}
+  m_Size: {x: 0.5273266, y: 0.7954477}
+  m_Direction: 0
