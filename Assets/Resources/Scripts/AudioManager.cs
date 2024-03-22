@@ -21,7 +21,8 @@ public class AudioManager : MonoBehaviour {
     }
 
     void Awake()
-    {
+    { 
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -31,7 +32,7 @@ public class AudioManager : MonoBehaviour {
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-
+        
     }
     void Start()
     {

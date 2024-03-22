@@ -46,7 +46,10 @@ public class EnemyStates : MonoBehaviour {
         _cooldown = duration;
         //speedChanging = strenght;
         //cooldownTimeChanger = strenght;
-        enemyMobility.wantedSpeed *= multiplier;
+        if (enemyMobility)
+        {
+            enemyMobility.speed *= multiplier;
+        }
         if (GetComponent<EnemyShooting>() != null)
         {
             enemyShooting.cooldownTimeChanger = multiplier;
@@ -55,7 +58,10 @@ public class EnemyStates : MonoBehaviour {
     public void RefreshStats()
     {
         GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
-        enemyMobility.wantedSpeed = enemyMobility.basicSpeed;
+        if (enemyMobility)
+        {
+            enemyMobility.speed = enemyMobility.basicSpeed;
+        }
         if (GetComponent<EnemyShooting>() != null)
         {
             enemyShooting.cooldownTimeChanger = 1f;

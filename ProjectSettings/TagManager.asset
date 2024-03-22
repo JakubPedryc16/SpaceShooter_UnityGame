@@ -21,6 +21,7 @@ TagManager:
   - potion
   - explosion
   - audioManager
+  - stalker
   layers:
   - Default
   - TransparentFX

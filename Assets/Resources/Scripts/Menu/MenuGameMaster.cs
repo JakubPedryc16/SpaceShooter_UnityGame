@@ -51,7 +51,7 @@ public class MenuGameMaster : MonoBehaviour {
             actualDifficultyText.text = "Actual:\n" + difficultyNames[Informations.statistics[5]];
             difficultiesActive = true;
             actualDifficultyText.gameObject.SetActive(true);
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 difficulties[i].SetActive(true);
             }
@@ -61,7 +61,7 @@ public class MenuGameMaster : MonoBehaviour {
 
             difficultiesActive = false;
             actualDifficultyText.gameObject.SetActive(false);
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 difficulties[i].SetActive(false);
             }
@@ -71,7 +71,7 @@ public class MenuGameMaster : MonoBehaviour {
     {
         difficultiesActive = false;
         actualDifficultyText.gameObject.SetActive(false);
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             difficulties[i].SetActive(false);
         }
@@ -81,8 +81,8 @@ public class MenuGameMaster : MonoBehaviour {
         Informations.statistics[5] = num;
         actualDifficultyText.text = "Actual:\n" + difficultyNames[Informations.statistics[5]];
     }
-    string[] difficultyNames = new string[4]
+    string[] difficultyNames = new string[3]
     {
-        "Easy","Medium","Hard","Insane"
+        "Novice","Advanced","Insane!!!"
     };
 }

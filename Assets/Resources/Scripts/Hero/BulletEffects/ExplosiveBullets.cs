@@ -19,7 +19,7 @@ public class ExplosiveBullets : MonoBehaviour {
 	void Update () {
 		if(bulletMobility.disappearTime <= 0 || bulletMobility.durability <= 0)
         {
-            GameObject explosion = Resources.Load<GameObject>("Prefabs/Bullets_1Spell/Explosions/Explosion" + num);
+            GameObject explosion = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_1Spell/Explosions/Explosion" + num);
             explosion.GetComponent<BulletMobility>().damage = damage * Informations.upgradesAmount.damageMultiplier[Informations.upgrades[1]];
             explosion.transform.position = transform.position;
             explosion.GetComponent<BulletMobility>().effect = effect;

@@ -109,7 +109,7 @@ public class HeroHealthScript : MonoBehaviour {
             HurtHero(col.GetComponent<EnemyBulletMobility>().damage * Informations.difficultyStats[Informations.statistics[5]].enemyDamageMultiplier);
             immunity = basicImmunity;
         }
-        else if(_tag == "enemy" && immunity <= 0f)
+        else if((_tag == "enemy" || _tag == "stalker") && immunity <= 0f)
         {
             if (col.GetComponent<EnemyHealth>().heroDmg != 0)
             {

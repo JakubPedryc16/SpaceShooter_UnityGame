@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,20 +55,27 @@ MonoBehaviour:
   waves:
   - enemies:
     - type: 11
-      spawnChance: 70
+      spawnChance: 50
     - type: 12
-      spawnChance: 30
+      spawnChance: 50
     amount: 32
-    cooldown: 1.2
+    cooldown: 1
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 702
+      spawnChance: 100
+    amount: 1
+    cooldown: 0.6
     bossWave: 0
     bossType: 0
   - enemies:
     - type: 11
-      spawnChance: 50
+      spawnChance: 60
     - type: 13
-      spawnChance: 50
+      spawnChance: 40
     amount: 36
-    cooldown: 1.1
+    cooldown: 1
     bossWave: 0
     bossType: 0
   - enemies:
@@ -83,10 +91,12 @@ MonoBehaviour:
     bossType: 0
   - enemies:
     - type: 7
-      spawnChance: 59
-    - type: 10
-      spawnChance: 59
-    amount: 32
+      spawnChance: 25
+    - type: 11
+      spawnChance: 70
+    - type: 701
+      spawnChance: 5
+    amount: 42
     cooldown: 1
     bossWave: 0
     bossType: 0
@@ -100,13 +110,20 @@ MonoBehaviour:
     - type: 14
       spawnChance: 25
     amount: 100
-    cooldown: 1
+    cooldown: 0.8
     bossWave: 0
     bossType: 0
   - enemies:
-    - type: 7
-      spawnChance: 25
-    amount: 2
-    cooldown: 1
-    bossWave: 1
+    - type: 703
+      spawnChance: 100
+    amount: 1
+    cooldown: 0.7
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 9
+      spawnChance: 100
+    amount: 50
+    cooldown: 0.7
+    bossWave: 0
     bossType: 0

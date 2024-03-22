@@ -6,7 +6,7 @@ public class Buffs : MonoBehaviour {
 
     float timeToDestroy = 10f;
 
-    public string name;
+    //public string stringName;
 
     public int buffNumber;
     public int buffTime;

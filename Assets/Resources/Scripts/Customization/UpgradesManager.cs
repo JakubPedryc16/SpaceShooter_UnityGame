@@ -40,7 +40,7 @@ public class UpgradesManager : MonoBehaviour {
         //Characters.charactersUpgrades.movementSpeed = Informations.upgradesAmount.movementMultiplier[Informations.upgrades[0]];
         //Characters.charactersUpgrades.range = Informations.upgradesAmount.rangeMultiplier[Informations.upgrades[0]];
         Characters.charactersUpgrades.cooldown = Informations.upgradesAmount.cooldownMultiplier[Informations.upgrades[1]];
-        Characters.charactersUpgrades.mana = Informations.upgradesAmount.manaMultiplier[Informations.upgrades[1]];
+        //Characters.charactersUpgrades.mana = Informations.upgradesAmount.manaMultiplier[Informations.upgrades[1]];
         Characters.charactersUpgrades.damage = Informations.upgradesAmount.damageMultiplier[Informations.upgrades[2]];
         //Characters.charactersUpgrades.bulletSpeed = Informations.upgradesAmount.bulletSpeedMultiplier[Informations.upgrades[2]];
 

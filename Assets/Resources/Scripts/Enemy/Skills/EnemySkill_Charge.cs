@@ -7,7 +7,7 @@ public class EnemySkill_Charge : MonoBehaviour {
     public float chargeActivationRange;
     GameObject playerPos;
     EnemyMobility enemyMobility;
-    public float speedBoost = 2f;
+    public float speedBoostPerSec = 1f;
 
     bool chargeOnColor = false;
 
@@ -21,16 +21,17 @@ public class EnemySkill_Charge : MonoBehaviour {
     {
         if (transform.position.y < playerPos.transform.position.y + chargeActivationRange && transform.position.y > playerPos.transform.position.y - chargeActivationRange)
         {
-            enemyMobility.wantedSpeed = enemyMobility.basicSpeed * speedBoost;
+            enemyMobility.speed += speedBoostPerSec * 0.01f;
             if (chargeOnColor == false)
             {
                 GetComponent<SpriteRenderer>().color = new Color32(255, 150, 150, 255);
                 chargeOnColor = true;
+                enemyMobility.speed += 1.5f * speedBoostPerSec;
             }
         }
         else
         {
-            enemyMobility.wantedSpeed = enemyMobility.basicSpeed;
+            enemyMobility.speed = enemyMobility.basicSpeed;
             if (chargeOnColor == true)
             {
                 GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);

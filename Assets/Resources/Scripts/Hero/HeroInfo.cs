@@ -18,15 +18,15 @@ public class HeroInfo : MonoBehaviour {
         string _tag = col.gameObject.tag;
         if(_tag == "potion")
         {
-            if(col.gameObject.GetComponent<Items>().num == 0)
+            /*if(col.gameObject.GetComponent<Items>().num == 0)
             {
                 GetComponent<HeroManaAndAbilities>().RestoreMana(col.gameObject.GetComponent<Items>().amount);
-            }
-            else if (col.gameObject.GetComponent<Items>().num == 1)
+            }*/
+            if (col.gameObject.GetComponent<Items>().num == 0)
             {
                 GetComponent<HeroHealthScript>().HealHero(col.gameObject.GetComponent<Items>().amount);
             }
-            else if (col.gameObject.GetComponent<Items>().num == 2)
+            else if (col.gameObject.GetComponent<Items>().num == 1)
             {
                 GetComponent<HeroSpecialAbility>().GetPoints(col.gameObject.GetComponent<Items>().amount);
             }

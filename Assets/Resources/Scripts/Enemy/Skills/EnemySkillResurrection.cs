@@ -11,7 +11,7 @@ public class EnemySkillResurrection : MonoBehaviour
         foreach(GameObject enemy in enemies)
         {
             enemy.GetComponent<EnemyHealth>().OnDeath += SpawnZombie;
-            ParticleSystem particleSystem = enemy.AddComponent<ParticleSystem>();
+            //ParticleSystem particleSystem = enemy.AddComponent<ParticleSystem>();
         }
     }
 

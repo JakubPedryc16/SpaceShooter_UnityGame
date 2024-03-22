@@ -22,12 +22,12 @@ public class HeroManaAndAbilities : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletPosition;
 
-    public float maxMana;
-    public float mana;
-    public float manaRegeneration = 1.5f;
+    //public float maxMana;
+    //public float mana;
+   // public float manaRegeneration = 1.5f;
 
     float[] abilityTimeLeft = new float[] { 0f, 0f };
-    bool[] abilityDone = new bool[] { false, false };
+    bool[] abilityDone = new bool[] { true, true };
     float[] abilityFloat = new float[2];
 
     int[] switchNum = new int[3];
@@ -36,16 +36,17 @@ public class HeroManaAndAbilities : MonoBehaviour
         0f,0f,0f
     };
     public KeyCode[] abilityButtons;
+    bool stopShooting = false;
     void Start()
     {
         heroShoot = GetComponent<HeroShoot>();
-        lostManaBar.color = new Color32(230, 0, 150, 200);
+        //lostManaBar.color = new Color32(230, 0, 150, 200);
         abilityImages[0].sprite = Resources.Load<Sprite>("Sprites/CustomizationStuff/Spell" + Informations.actualAbility[0]);
         abilityImages[1].sprite = Resources.Load<Sprite>("Sprites/CustomizationStuff/Ability" + Informations.actualAbility[1]);
-        manaRegeneration = Characters.characters[Informations.statistics[3]].manaRegeneration;
-        maxMana = Characters.characters[Characters.characterStatsNum].mana * Characters.charactersUpgrades.mana;
-        mana = maxMana;
-        RefreshBars();
+        //manaRegeneration = Characters.characters[Informations.statistics[3]].manaRegeneration;
+        //maxMana = Characters.characters[Characters.characterStatsNum].mana * Characters.charactersUpgrades.mana;
+        //mana = maxMana;
+        //RefreshBars();
     }
 
     void Update()
@@ -68,10 +69,13 @@ public class HeroManaAndAbilities : MonoBehaviour
                 if (i == 1)
                 {
                     trail.gameObject.SetActive(false);
-                    GetComponent<HeroShoot>().RefreshAbilityModifiers();
+                    GetComponent<HeroShoot>().RefreshModifiers();
                     GetComponent<HeroShoot>().RefreshStats();
                 }
-                GetComponent<HeroShoot>().stopShooting[i] = false;
+                if (stopShooting == true) { 
+                    GetComponent<HeroShoot>().abilityActiveCount--;
+                    stopShooting = false;
+                }
                 abilityDone[i] = true;
             }
         }
@@ -79,7 +83,7 @@ public class HeroManaAndAbilities : MonoBehaviour
         {
             timeToDisappearLostMP -= Time.deltaTime;
         }
-        else if (lostManaBar.fillAmount > mana / maxMana)
+        /*else if (lostManaBar.fillAmount > mana / maxMana)
         {
             lostManaBar.color = new Color32(230, 0, 150, 200);
             lostManaBar.fillAmount -= 0.005f;
@@ -94,6 +98,7 @@ public class HeroManaAndAbilities : MonoBehaviour
             mana = Mathf.Clamp(mana + (manaRegeneration * Informations.upgradesAmount.manaMultiplier[Informations.upgrades[2]] * Time.deltaTime), 0f, maxMana);
             RefreshBars();
         }
+        */
         for (int i = 0; i < 2; i++)
         {
             if (cooldown[i] >= 0f)
@@ -127,16 +132,17 @@ public class HeroManaAndAbilities : MonoBehaviour
                 abilityImages[i].color = new Color32(255, 255, 255, 255);
             }
         }
-        if (Input.GetKeyDown(abilityButtons[0]) && mana >= Informations.spellManaCost[Informations.actualAbility[0]] && cooldown[0] <= 0f)
+        if (Input.GetKeyDown(abilityButtons[0]) /*&& mana >= Informations.spellManaCost[Informations.actualAbility[0]]*/ && cooldown[0] <= 0f)
         {
-            UseMana(Informations.spellManaCost[Informations.actualAbility[0]]);
+            //UseMana(Informations.spellManaCost[Informations.actualAbility[0]]);
             cooldown[0] = Informations.spellCooldown[Informations.actualAbility[0]];
             abilityCooldownsTimeNum[0].color = new Color32(255, 255, 255, 255);
             abilityDone[0] = false;
-            if (timeToDisappearLostMP <= 0f && manaBar.fillAmount >= lostManaBar.fillAmount)
+            /*if (timeToDisappearLostMP <= 0f && manaBar.fillAmount >= lostManaBar.fillAmount)
             {
                 timeToDisappearLostMP = 0.75f;
             }
+            */
             switch (Informations.actualAbility[0])
             {
                 case 0:
@@ -150,21 +156,22 @@ public class HeroManaAndAbilities : MonoBehaviour
                     break;
             }
         }
-        else if (Input.GetKeyDown(abilityButtons[0]) && cooldown[0] <= 0f)
+        /*else if (Input.GetKeyDown(abilityButtons[0]) && cooldown[0] <= 0f)
         {
             lostManaBar.fillAmount = Informations.spellManaCost[Informations.actualAbility[0]] / maxMana;
             timeToDisappearLostMP = 0.5f;
-        }
-        if (Input.GetKeyDown(abilityButtons[1]) && mana >= Informations.abilityManaCost[Informations.actualAbility[1]] && cooldown[1] <= 0f && GetComponent<HeroSpecialAbility>().timeLeft <= 0f)
+        }*/
+        if (Input.GetKeyDown(abilityButtons[1]) /*&& mana >= Informations.abilityManaCost[Informations.actualAbility[1]]*/ && cooldown[1] <= 0f && GetComponent<HeroSpecialAbility>().timeLeft <= 0f)
         {
-            UseMana(Informations.abilityManaCost[Informations.actualAbility[1]]);
+            //UseMana(Informations.abilityManaCost[Informations.actualAbility[1]]);
             cooldown[1] = Informations.abilityCooldown[Informations.actualAbility[1]];
             abilityCooldownsTimeNum[1].color = new Color32(255, 255, 255, 255);
             abilityDone[1] = false;
-            if (timeToDisappearLostMP <= 0f && manaBar.fillAmount >= lostManaBar.fillAmount)
+            /*if (timeToDisappearLostMP <= 0f && manaBar.fillAmount >= lostManaBar.fillAmount)
             {
                 timeToDisappearLostMP = 0.75f;
             }
+            */
             switch (Informations.actualAbility[1])
             {
                 case 0:
@@ -178,13 +185,15 @@ public class HeroManaAndAbilities : MonoBehaviour
                     break;
             }
         }
+        /*
         else if (Input.GetKeyDown(abilityButtons[1]) && cooldown[1] <= 0f)
         {
             lostManaBar.fillAmount = Informations.abilityManaCost[Informations.actualAbility[1]] / maxMana;
             timeToDisappearLostMP = 0.5f;
         }
+        */
     }
-    public void RestoreMana(int amount)
+    /*public void RestoreMana(int amount)
     {
         mana = Mathf.Clamp(mana + amount, 0f, maxMana);
         RefreshBars();
@@ -193,46 +202,51 @@ public class HeroManaAndAbilities : MonoBehaviour
     {
         mana = Mathf.Clamp(mana - amount,0f,maxMana);
     }
+
     public void RefreshBars()
     {
         manaBar.fillAmount = Mathf.Round((mana / maxMana) * 100f) / 100f;
         manaText.text = "" + (int)mana;
     }
+        */
     // Spells
     public void MysticKnife()
     {
         for (float i = -45f; i <= 45f; i += 45f)
         {
-            BulletStats("Bullets_1Spell/Bullet0", 8f, 20f * Characters.charactersUpgrades.damage * Characters.characters[Informations.statistics[3]].magicDamageMultiplier, 4f, 1, i);
+            BulletStats("Bullets/Bullets_1Spell/Bullet0", 8f, 20f , 4f, 1, i);
             Instantiate(bullet);
         }
-        BulletStats("Bullets_1Spell/Bullet0", 8f, 20f * Characters.charactersUpgrades.damage * Characters.characters[Informations.statistics[3]].magicDamageMultiplier, 4f, 1, 180);
+        BulletStats("Bullets/Bullets_1Spell/Bullet0", 8f, 20f , 4f, 1, 180);
         Instantiate(bullet);
+        //GetComponent<HeroShoot>().laserSound.Play();
         FindObjectOfType<AudioManager>().Play("LaserSound0");
     }
     public void RageAttack()
     {
-        //abilityTimeLeft[0] = 2.5f;
-        GetComponent<HeroShoot>().stopShooting[0] = true;
+        abilityTimeLeft[0] = 2.5f;
         for (float i = 0f; i < 2.5f; i += 0.25f)
         {
             Invoke("RageShots", i);
         }
-
+        stopShooting = true;
+        GetComponent<HeroShoot>().abilityActiveCount++;
     }
     public void RageShots()
     {
+        //GetComponent<HeroShoot>().laserSound.Play();
         FindObjectOfType<AudioManager>().Play("LaserSound0");
         for (int i = 0; i < 3; i++)
         {
-            BulletStats("Bullets_1Spell/Bullet1", 10f, 2f * Characters.charactersUpgrades.damage * Characters.characters[Informations.statistics[3]].magicDamageMultiplier, 4f, 1, Random.Range(-40f, 40f));
+            BulletStats("Bullets/Bullets_1Spell/Bullet1", 10f, 5f , 4f, 1, Random.Range(-40f, 40f));
             Instantiate(bullet);
         }
     }
     public void ExplosiveShot()
     {
+        //GetComponent<HeroShoot>().laserSound.Play();
         FindObjectOfType<AudioManager>().Play("LaserSound0");
-        BulletStats("Bullets_1Spell/Bullet2", 2f, 10f * Characters.charactersUpgrades.damage * Characters.characters[Informations.statistics[3]].magicDamageMultiplier, 2f, 1, 0);
+        BulletStats("Bullets/Bullets_1Spell/Bullet2", 2f, 10f , 2f, 1, 0);
         Instantiate(bullet);
     }
     //Abilities
@@ -240,8 +254,8 @@ public class HeroManaAndAbilities : MonoBehaviour
     {
         trail.gameObject.SetActive(true);
         abilityTimeLeft[1] = 5f;
-        GetComponent<HeroShoot>().abilityCooldownModifier = 0.4f;
-        GetComponent<HeroShoot>().abilityMovementSpeedModifier = 1.2f;
+        GetComponent<HeroShoot>().cooldownModifier = 0.4f;
+        GetComponent<HeroShoot>().movementSpeedModifier = 1.2f;
         GetComponent<HeroShoot>().RefreshStats();
         GetComponent<HeroShoot>().Shoot();
     }
@@ -256,21 +270,25 @@ public class HeroManaAndAbilities : MonoBehaviour
         {
             Invoke("AutoShoot", 0.5f);
         }
-        BulletStats("Bullets_Ability/Bullet0", 6f, 5f * Characters.charactersUpgrades.damage * Characters.characters[Informations.statistics[3]].magicDamageMultiplier, 4f, 1, Random.Range(0f, 0f));
+        BulletStats("Bullets/Bullets_Ability/Bullet1", 6f, 10f, 4f, 1, Random.Range(0f, 0f));
         Instantiate(bullet);
+        //GetComponent<HeroShoot>().laserSound.Play();
         FindObjectOfType<AudioManager>().Play("LaserSound0");
+
+        
 
     }
     public void KniveCircle()
     {
+        //GetComponent<HeroShoot>().laserSound.Play();
         FindObjectOfType<AudioManager>().Play("LaserSound0");
-        for (int i = 0;i < 6; i += 2)
+        for (int i = 0;i < 8; i += 2)
         {
-            Invoke("KniveCircleShot0", i);
+            Invoke("KniveCircleShot0", (float)i /2);
         }
-        for (int i = 1; i < 5; i += 2)
+        for (int i = 1; i < 7; i += 2)
         {
-            Invoke("KniveCircleShot1", i);
+            Invoke("KniveCircleShot1", (float)i /2);
         }
 
     }
@@ -278,7 +296,7 @@ public class HeroManaAndAbilities : MonoBehaviour
     {
         for(int i = 0; i < 360; i += 60)
         {
-            BulletStats("Bullets_Ability/Bullet2", 6f, 10f * Characters.charactersUpgrades.damage * Characters.characters[Informations.statistics[3]].magicDamageMultiplier, 4f, 1, i);
+            BulletStats("Bullets/Bullets_Ability/Bullet2", 6f, 15f, 4f, 1, i);
             Instantiate(bullet);
         }
     }
@@ -286,15 +304,15 @@ public class HeroManaAndAbilities : MonoBehaviour
     {
         for (int i = -30; i < 330; i += 60)
         {
-            BulletStats("Bullets_Ability/Bullet2", 6f, 10f * Characters.charactersUpgrades.damage * Characters.characters[Informations.statistics[3]].magicDamageMultiplier, 4f, 1, i);
+            BulletStats("Bullets/Bullets_Ability/Bullet2", 6f, 15f , 4f, 1, i);
             Instantiate(bullet);
         }
     }
     public void BulletStats(string num, float _speed, float _dmg, float _disappearTime, int _durability, float direction)
     {
-        RefreshBars();
+        //RefreshBars();
         bullet = Resources.Load<GameObject>("Prefabs/" + num);
-        bullet.GetComponent<BulletMobility>().damage = _dmg;
+        bullet.GetComponent<BulletMobility>().damage = _dmg * Informations.upgradesAmount.magicDamage[Informations.upgrades[2]];
         bullet.GetComponent<BulletMobility>().speed = _speed;
         //bullet.GetComponent<BulletMobility>().disappearTime = _disappearTime;
         bullet.GetComponent<BulletMobility>().durability = _durability;

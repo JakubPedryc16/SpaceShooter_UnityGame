@@ -9,11 +9,13 @@ public class Items : MonoBehaviour {
 
     public float cooldown;
 
+    public float lifeTime = 0;
+
 
     private void Update()
     {
-        cooldown -= Time.deltaTime;
-        if(cooldown <= 0f)
+        lifeTime -= Time.deltaTime;
+        if(lifeTime <= 0f)
         {
             Destroy(this.gameObject);
         }

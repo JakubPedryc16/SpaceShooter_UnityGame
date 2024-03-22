@@ -138,7 +138,7 @@ public class HeroSpecialAbility : MonoBehaviour {
         timeChanger = 1;
         endButton = KeyCode.None;
         specialAbilityButton = KeyCode.Space;
-        GetComponent<HeroShoot>().stopShooting[2] = false;
+        //GetComponent<HeroShoot>().abilityActiveCount--;
         freeUsage = false;
         done = false;
         timeParameter = 0f;
@@ -157,17 +157,17 @@ public class HeroSpecialAbility : MonoBehaviour {
         switch (switchNum)
         {
             case 0:
-                GetComponent<HeroShoot>().stopShooting[2] = true;
+                GetComponent<HeroShoot>().abilityActiveCount ++;
                 done = true;
                 //Time.timeScale = 0.4f * gm.timeMeter * gm.actualTimeModulations;
                 timeChanger = 1f / 0.4f;
                 gm.actualTimeModulations *= 0.4f;
                 Time.timeScale = gm.tempoMeter * gm.actualTimeModulations;
-                GetComponent<HeroShoot>().specialAbilityMovementSpeedModifier = timeChanger;
+                GetComponent<HeroShoot>().movementSpeedModifier = timeChanger;
                 GetComponent<HeroShoot>().RefreshStats();
                 lastPoints = points;
                 points -= 10f * Mathf.Round((points - 4f) / 10f);
-                BulletStats(0 + "", 12f, 10f * Characters.charactersUpgrades.damage, 4f, 1, 0f, 0f);
+                BulletStats(0 + "", 12f, 10f, 4f, 1, 0f, 0f);
                 switchNum = 1;
                 cooldown[1] = 0f;
                 cooldown[0] = 0f;
@@ -198,10 +198,10 @@ public class HeroSpecialAbility : MonoBehaviour {
                 timeChanger = 1f;
                 gm.actualTimeModulations *= 1 / 0.4f;
                 Time.timeScale = gm.tempoMeter * gm.actualTimeModulations;
-                GetComponent<HeroShoot>().RefreshSpecialAbilityModifiers();
+                GetComponent<HeroShoot>().RefreshModifiers();
                 GetComponent<HeroShoot>().RefreshStats();
                 RefreshNums();
-                GetComponent<HeroShoot>().stopShooting[2] = false;
+                GetComponent<HeroShoot>().abilityActiveCount--;
                 break;
 
         }
@@ -214,20 +214,22 @@ public class HeroSpecialAbility : MonoBehaviour {
         for( int i = 0;i < enemies.Length; i++)
         {
             enemies[i].GetComponent<EnemyStates>().Freeze(0.25f,8f);
-            manaAndAbilities.RestoreMana(2);
+            //manaAndAbilities.RestoreMana(2);
             for(int a = 0; a < 2;a++)
             {
                 manaAndAbilities.cooldown[a] -= 2f;
             }
-
+            
         }
         if(boss != null)
         {
             boss.GetComponent<BossStates>().Freeze(0.4f,4f);
             manaAndAbilities.cooldown[0] -= 5f;
             manaAndAbilities.cooldown[1] -= 5f;
-            manaAndAbilities.RestoreMana(5);
+            //manaAndAbilities.RestoreMana(5);
         }
+        manaAndAbilities.KniveCircleShot0();
+        manaAndAbilities.KniveCircleShot1();
         RefreshNums();
     }
     public void SpearAttack()
@@ -236,9 +238,10 @@ public class HeroSpecialAbility : MonoBehaviour {
         {
             case -1:
                 RefreshNums();
+                GetComponent<HeroShoot>().abilityActiveCount--;
                 break;
             case 0:
-                GetComponent<HeroShoot>().stopShooting[2] = true;
+                GetComponent<HeroShoot>().abilityActiveCount++;
                 //points -= pointsNeeded;
                 endButton = KeyCode.Space;
                 SpecialAbilityObject.SetActive(true);
@@ -279,7 +282,7 @@ public class HeroSpecialAbility : MonoBehaviour {
             case 2:
                 abilityNum0 = 0f;
                 timeParameter = 1.5f;
-                BulletStats(2 + "_" + 0, 0.06f, Characters.characters[Characters.characterStatsNum].damage * Characters.charactersUpgrades.damage * 2f, 0.12f, 2, 0f, 0f);
+                BulletStats(2 + "_" + 0, 0.06f, Characters.characters[Characters.characterStatsNum].damage  * 2f, 0.12f, 2, 0f, 0f);
                 Instantiate(bullet);
                 if(points < pointsNeeded)
                 {
@@ -294,7 +297,7 @@ public class HeroSpecialAbility : MonoBehaviour {
             case 3:
                 abilityNum0 = 1f;
                 timeParameter = 4f;
-                BulletStats(2 + "_" + 1, 0.06f, Characters.characters[Characters.characterStatsNum].damage * Characters.charactersUpgrades.damage * 3f, 0.15f, 3, 0f, 0.1f);
+                BulletStats(2 + "_" + 1, 0.06f, Characters.characters[Characters.characterStatsNum].damage * 3f, 0.15f, 3, 0f, 0.1f);
                 Instantiate(bullet);
                 if (points < pointsNeeded)
                 {
@@ -309,7 +312,7 @@ public class HeroSpecialAbility : MonoBehaviour {
             case 4:
                 abilityNum0 = 0f;
                 timeParameter = 0f;
-                BulletStats(2 + "_" + 2, 0.06f, Characters.characters[Characters.characterStatsNum].damage * Characters.charactersUpgrades.damage * 4f, 0.20f, 4, 0f, 0.2f);
+                BulletStats(2 + "_" + 2, 0.06f, Characters.characters[Characters.characterStatsNum].damage * 4f, 0.20f, 4, 0f, 0.2f);
                 Instantiate(bullet);
                 if (points < pointsNeeded)
                 {
@@ -329,10 +332,11 @@ public class HeroSpecialAbility : MonoBehaviour {
         {
             case -1:
                 RefreshNums();
+                GetComponent<HeroShoot>().abilityActiveCount--;
                 break;
             case 0:
                 abilityNum0 = 1f;
-                GetComponent<HeroShoot>().stopShooting[2] = true;
+                GetComponent<HeroShoot>().abilityActiveCount++;
                 endButton = KeyCode.Space;
                 specialAbilityButton = GetComponent<HeroShoot>().shoot;
                 switchNum = 1;
@@ -343,8 +347,9 @@ public class HeroSpecialAbility : MonoBehaviour {
                 {
                     if (cooldown[1] <= 0f)
                     {
-                        BulletStats("" + 3, 8f, 5f * Characters.charactersUpgrades.damage, 3f, 1, Random.Range(-12f,12f), Random.Range(-0.25f,0.25f));
+                        BulletStats("" + 3, 8f, 5f, 3f, 1, Random.Range(-12f,12f), Random.Range(-0.25f,0.25f));
                         Instantiate(bullet);
+                        GetComponent<HeroShoot>().anim.Play(GetComponent<HeroShoot>().animName);
                         FindObjectOfType<AudioManager>().Play("LaserSound0");
                         cooldown[1] += 0.28f * abilityNum0;
                     }
@@ -360,7 +365,7 @@ public class HeroSpecialAbility : MonoBehaviour {
                     cooldown[0] += 0.28f;
                     abilityNum0 = Mathf.Clamp(abilityNum0 + 0.1f, 0.4f, 1f);
                 }
-                if(Input.GetKeyDown(endButton) || points < pointsNeeded)
+                if(Input.GetKeyDown(endButton) || points <= pointsNeeded)
                 {
                     switchNum = -1;
                 }
@@ -369,8 +374,8 @@ public class HeroSpecialAbility : MonoBehaviour {
     }
     public void BulletStats(string num, float _speed, float _dmg, float _disappearTime, int _durability, float direction, float positionxChange)
     {
-        bullet = Resources.Load<GameObject>("Prefabs/Bullets_SpecialAbility/Bullet" + num);
-        bullet.GetComponent<BulletMobility>().damage = _dmg * Characters.charactersUpgrades.damage;
+        bullet = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_SpecialAbility/Bullet" + num);
+        bullet.GetComponent<BulletMobility>().damage = _dmg * Informations.upgradesAmount.magicDamage[Informations.upgrades[2]];
         bullet.GetComponent<BulletMobility>().speed = _speed;
         //bullet.GetComponent<BulletMobility>().disappearTime = _disappearTime;
         bullet.GetComponent<BulletMobility>().durability = _durability;

@@ -11,7 +11,7 @@ public class ActiveItemScript : MonoBehaviour {
     int amount;
     float duration;
     bool itemActive;
-    bool itemActivated;
+    //bool itemActivated;
     public KeyCode useItem;
     GameObject bullet;
     public GameObject bulletPosition;
@@ -33,11 +33,11 @@ public class ActiveItemScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(useItem) && _cooldown <= 0f && num != 0)
+        if (Input.GetKeyDown(useItem) && _cooldown <= 0f && num != -1)
         {
             UseItem();
         }
-        if (duration > 0f && itemActive == true)
+        if (itemActive == true)
         {
 
         }
@@ -50,10 +50,6 @@ public class ActiveItemScript : MonoBehaviour {
         if (_cooldown > 0f)
         {
             _cooldown -= Time.deltaTime;
-        }
-        if (duration > 0f)
-        {
-            duration -= Time.deltaTime;
         }
         if (amount > 0)
         {
@@ -73,20 +69,20 @@ public class ActiveItemScript : MonoBehaviour {
     {
         switch (num)
         {
-            case 1:
+            case 0:
                 KniveX5();
                 break;
-            case 2:
+            case 1:
                 TripleShot();
                 break;
-            case 3:
+            case 2:
                 SurroundShoot();
                 break;
         }
     }
     public void bulletStats(int num, float _speed, float _dmg, float _disappearTime, int _durability, float direction)
     {
-        bullet = Resources.Load<GameObject>("Prefabs/Bullets_Ability/Bullet" + num);
+        bullet = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_Ability/Bullet" + num);
         bullet.GetComponent<BulletMobility>().damage = _dmg * Characters.charactersUpgrades.damage;
         bullet.GetComponent<BulletMobility>().speed = _speed;
         //bullet.GetComponent<BulletMobility>().disappearTime = _disappearTime;
@@ -96,7 +92,7 @@ public class ActiveItemScript : MonoBehaviour {
     }
     public void RefreshStats()
     {
-        num = 0;
+        num = -1;
         amount = 0;
         cooldown = 0f;
         duration = 0f;
@@ -142,42 +138,23 @@ public class ActiveItemScript : MonoBehaviour {
     }
     public void KniveX5()
     {
-        if (itemActivated == false)
-        {
-            SetStats(8, 0.15f, 0);
-            itemActivated = true;
-        }
-        else
-        {
-            BulletStats(0, 8f, Characters.characters[Characters.characterStatsNum].damage * Characters.charactersUpgrades.damage, 4f, 1, 0f);
-            Shoot(new float[] { 0f });
-        }
+
+        BulletStats(0, 8f, Characters.characters[Characters.characterStatsNum].damage * Characters.charactersUpgrades.damage, 4f, 1, 0f);
+        Shoot(new float[] { 0f });
+
     }
     public void TripleShot()
     {
-        if (itemActivated == false)
-        {
-            SetStats(4, 0.5f, 0);
-            itemActivated = true;
-        }
-        else
-        {
-            BulletStats(1, 8f, Characters.characters[Characters.characterStatsNum].damage * Characters.charactersUpgrades.damage, 4f, 1, 0f);
-            Shoot(new float[] {90f, 60f, 0f, -60f, -90f });
-        }
+
+        BulletStats(1, 8f, Characters.characters[Characters.characterStatsNum].damage * Characters.charactersUpgrades.damage, 4f, 1, 0f);
+        Shoot(new float[] {90f, 60f, 0f, -60f, -90f });
+
     }
     public void SurroundShoot()
     {
-        if (itemActivated == false)
-        {
-            SetStats(3, 1f, 0);
-            itemActivated = true;
-        }
-        else
-        {
-            BulletStats(0, 8f, Characters.characters[Characters.characterStatsNum].damage * Characters.charactersUpgrades.damage, 4f, 1, 0f);
-            Shoot(new float[] { 0f, 30f, 60f, 90f, 120f, 150f, 180f, 210f, 240f, 270f, 300f, 330f, 360f });
-        }
+        BulletStats(0, 8f, Characters.characters[Characters.characterStatsNum].damage * Characters.charactersUpgrades.damage, 4f, 1, 0f);
+        Shoot(new float[] { 0f, 30f, 60f, 90f, 120f, 150f, 180f, 210f, 240f, 270f, 300f, 330f, 360f });
+
     }
     public void Shoot(float[] directions)
     {
@@ -192,7 +169,7 @@ public class ActiveItemScript : MonoBehaviour {
     }
     public void BulletStats(int num, float _speed, float _dmg, float _disappearTime, int _durability, float direction)
     {
-        bullet = Resources.Load<GameObject>("Prefabs/Bullets_ActiveItem/Bullet" + num);
+        bullet = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_ActiveItem/Bullet" + num);
         bullet.GetComponent<BulletMobility>().damage = _dmg * Characters.charactersUpgrades.damage;
         bullet.GetComponent<BulletMobility>().speed = _speed;
         //bullet.GetComponent<BulletMobility>().disappearTime = _disappearTime;
@@ -208,12 +185,15 @@ public class ActiveItemScript : MonoBehaviour {
         if (_tag == "item")
         {
             FindObjectOfType<AudioManager>().Play("ItemGrab");
+            amount = col.GetComponent<Items>().amount;
+            cooldown = col.GetComponent<Items>().cooldown;
+            num = col.GetComponent<Items>().num;
             itemAmountText.gameObject.SetActive(true);
-            itemActivated = false;
+            //itemActivated = false;
             num = col.gameObject.GetComponent<Items>().num;
             itemImage.SetActive(true);
             itemImage.GetComponent<Image>().sprite = Resources.Load<GameObject>("Prefabs/Pickups/Items/Item" + num).GetComponent<SpriteRenderer>().sprite;
-            UseItem();
+            //UseItem();
             itemAmountText.text = "" + amount;
         }
     }

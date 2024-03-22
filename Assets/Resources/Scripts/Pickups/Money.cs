@@ -5,7 +5,7 @@ using UnityEngine;
 public class Money : MonoBehaviour {
 
     public int CrystalsValue;
-    float timeToDestroy = 5f;
+    float timeToDestroy = 15f;
 
     void Update()
     {
@@ -26,6 +26,7 @@ public class Money : MonoBehaviour {
         if(_tag == "player")
         {
             GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>().EarnMoney(CrystalsValue);
+            FindObjectOfType<AudioManager>().Play("ItemGrab");
             Destroy(this.gameObject);
         }
     }

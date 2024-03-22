@@ -7,51 +7,66 @@ public static class Characters {
     
     public static int characterStatsNum = 0;
 
-    public static ChoosenCharacter charactersUpgrades = new ChoosenCharacter(1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, false,false);
+    public static ChoosenCharacter charactersUpgrades = new ChoosenCharacter(1f, 1f, 1f, 1f, 1f, false,false);
 
 
     public static ChoosenCharacter[] characters = new ChoosenCharacter[] //new ChoosenCharacter(10f,8f,1.2f,1f,10f,1.4f,40f,25f,0.4f,1f,true,true),
         {
-
-            new ChoosenCharacter(10f,8f,1.2f,1f,10f,0.9f,40f,20f,0.4f,1f,true,true),
-            new ChoosenCharacter(10f,8f,1.44f,1.2f,10f,0.9f,40f,26f,0.52f,1f,false,true),
-            new ChoosenCharacter(10f,8f,1.2f,1f,10f,1.08f,48f,20f,0.4f,1f,true,true),
-            new ChoosenCharacter(10f,8f,1.2f,1f,10f,0.9f,40f,20f,0.4f,1f,false,true)
+                                //dmg   bspeed  cooldwn    movspd   HP      specialbullet  ability    
+            new ChoosenCharacter(10f,   8f,     1.2f,         0.8f,   50f,    true,          true),
+            new ChoosenCharacter(10f,   8f,     0.7f,       1f,     50f,    false,         true),
+            new ChoosenCharacter(10f,   8f,     0.6f,       1.15f,  60f,    true,          true),
+            new ChoosenCharacter(10f,   8f,     0.7f,       1f,     50f,    false,         true)
 
         };
-    
+
+    public static Weapon[] weapons =
+    {   // reload ClipSize gapTime bulletsCount
+        new Weapon(3.2f,    12,   0.3f,    3),
+        new Weapon(1.5f,  10,   0f,      1),
+        new Weapon(0.8f,   3,   0f,      1),
+        new Weapon(2.1f,     6,   0.1f,    2)
+
+    };
     public class ChoosenCharacter
     {
         public float damage;
         public float bulletSpeed;
         public float cooldown;
-        public float magicDamageMultiplier;
-        public float specialAbilityCooldown;
         public float movementSpeed;
         public float health;
-        public float mana;
-        public float manaRegeneration;
-        public float magicCooldownsMultiplier;
         public bool specialBullet;
         public bool specialAbility;
 
 
-        public ChoosenCharacter(float _damage,float _bulletSpeed,float _cooldown,float _magicDamageMultiplier, float _specialAbilityCooldown, float _movementSpeed, float _health, float _mana, float _manaRegeneration,float _magicCooldownsMultiplier, bool _specialBullet, bool _specialAbility)
+        public ChoosenCharacter(float _damage,float _bulletSpeed,float _cooldown, float _movementSpeed, float _health, bool _specialBullet, bool _specialAbility)
         {
             damage = _damage;
             bulletSpeed = _bulletSpeed;
             cooldown = _cooldown;
-            magicDamageMultiplier = _magicDamageMultiplier;
-            specialAbilityCooldown = _specialAbilityCooldown;
             movementSpeed = _movementSpeed;
             health = _health;
-            mana = _mana;
-            manaRegeneration = _manaRegeneration;
-            magicCooldownsMultiplier = _magicCooldownsMultiplier;
             specialBullet = _specialBullet;
             specialAbility = _specialAbility;
         }
     }
+    public class Weapon
+    {
+        public float reloadTime;
+        public int clipSize;
+        public float gapTime;
+        public int bulletsAtOnce;
+        //public float fatigue;
+        public Weapon(float _reloadTime, int _clipSize, float _gapTime, int _bulletsAtOnce)
+        {
+            reloadTime = _reloadTime;
+            clipSize = _clipSize;
+            gapTime = _gapTime;
+            bulletsAtOnce = _bulletsAtOnce;
+            //fatigue = _fatigue;
+        }
+    }
+    /*
     public static BuffCharacter[] buffCharacters = new BuffCharacter[]
     {
             new BuffCharacter(5f,6f,0.18f,3f,180f,3,1.44f,1,0),
@@ -86,5 +101,6 @@ public static class Characters {
             playerNum = _playerNum;
         }
     }
+    */
 
 }

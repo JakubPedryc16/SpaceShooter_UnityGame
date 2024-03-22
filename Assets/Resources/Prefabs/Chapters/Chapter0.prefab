@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,7 +57,7 @@ MonoBehaviour:
     - type: 0
       spawnChance: 100
     amount: 20
-    cooldown: 1.4
+    cooldown: 0.7
     bossWave: 0
     bossType: 0
   - enemies:
@@ -67,7 +68,7 @@ MonoBehaviour:
     - type: 901
       spawnChance: 5
     amount: 18
-    cooldown: 1.6
+    cooldown: 0.8
     bossWave: 0
     bossType: 0
   - enemies:
@@ -80,7 +81,7 @@ MonoBehaviour:
     - type: 901
       spawnChance: 4
     amount: 32
-    cooldown: 1
+    cooldown: 0.5
     bossWave: 0
     bossType: 0
   - enemies:
@@ -91,7 +92,7 @@ MonoBehaviour:
     - type: 901
       spawnChance: 3
     amount: 25
-    cooldown: 1
+    cooldown: 0.5
     bossWave: 0
     bossType: 0
   - enemies:
@@ -102,7 +103,7 @@ MonoBehaviour:
     - type: 901
       spawnChance: 4
     amount: 12
-    cooldown: 1
+    cooldown: 0.5
     bossWave: 0
     bossType: 0
   - enemies:
@@ -120,7 +121,7 @@ MonoBehaviour:
     - type: 901
       spawnChance: 4
     amount: 15
-    cooldown: 1
+    cooldown: 0.5
     bossWave: 0
     bossType: 0
   - enemies:
@@ -133,7 +134,7 @@ MonoBehaviour:
     - type: 901
       spawnChance: 4
     amount: 22
-    cooldown: 0.7
+    cooldown: 0.35
     bossWave: 0
     bossType: 0
   - enemies:
@@ -144,7 +145,7 @@ MonoBehaviour:
     - type: 901
       spawnChance: 6
     amount: 40
-    cooldown: 1
+    cooldown: 0.5
     bossWave: 0
     bossType: 0
   - enemies:
@@ -165,35 +166,61 @@ MonoBehaviour:
     - type: 901
       spawnChance: 6
     amount: 50
-    cooldown: 1.2
+    cooldown: 0.6
     bossWave: 0
     bossType: 0
   - enemies:
     - type: 4
+      spawnChance: 82
+    - type: 8
+      spawnChance: 18
+    amount: 30
+    cooldown: 0.65
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 7
       spawnChance: 80
     - type: 8
       spawnChance: 20
-    amount: 30
-    cooldown: 1
+    amount: 12
+    cooldown: 1.5
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 6
+      spawnChance: 50
+    - type: 7
+      spawnChance: 50
+    amount: 12
+    cooldown: 1.25
+    bossWave: 0
+    bossType: 0
+  - enemies:
+    - type: 3
+      spawnChance: 15
+    - type: 4
+      spawnChance: 10
+    - type: 5
+      spawnChance: 10
+    - type: 6
+      spawnChance: 8
+    - type: 7
+      spawnChance: 8
+    - type: 8
+      spawnChance: 6
+    - type: 9
+      spawnChance: 16
+    - type: 801
+      spawnChance: 16
+    - type: 901
+      spawnChance: 11
+    amount: 60
+    cooldown: 0.7
     bossWave: 0
     bossType: 0
   - enemies: []
     amount: 1
     cooldown: 0
     bossWave: 1
-    bossType: 100
-  - enemies: []
-    amount: 1
-    cooldown: 0
-    bossWave: 1
-    bossType: 100
-  - enemies: []
-    amount: 1
-    cooldown: 0
-    bossWave: 1
-    bossType: 100
-  - enemies: []
-    amount: 1
-    cooldown: 0
-    bossWave: 1
-    bossType: 100
+    bossType: 0

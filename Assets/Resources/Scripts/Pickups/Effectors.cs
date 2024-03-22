@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Effectors : MonoBehaviour {
 
-    public string name;
+    //public string name;
 
     //GameObject Player;
     public int damageModification = 0;
@@ -34,9 +34,7 @@ public class Effectors : MonoBehaviour {
         string _tag = col.gameObject.tag;
         if(_tag == "player")
         {
-            //col.gameObject.GetComponent<HeroShoot>().damageModifier += damageModification;
-            //col.gameObject.GetComponent<HeroShoot>().speedModifier += bulletSpeedModification;
-            //col.gameObject.GetComponent<HeroShoot>().precisionModifier += precisionModification;
+            col.gameObject.GetComponent<HeroShoot>().damageModifier += damageModification;
             col.gameObject.GetComponent<HeroShoot>().cooldownModifier += cooldownModification;
             Destroy(this.gameObject);
         }

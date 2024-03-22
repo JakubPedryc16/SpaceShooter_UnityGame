@@ -44,9 +44,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -56,8 +59,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -78,10 +81,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -126,7 +133,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c79718cbfcb87e8d0800000000000000
-      internalID: -2817129317559862916
+      internalID: 1062314137845865055
       vertices: []
       indices: 
       edges: []
@@ -147,7 +154,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: be5f55c3f949af840800000000000000
-      internalID: 5258678926541452779
+      internalID: -1367491792708970346
       vertices: []
       indices: 
       edges: []
@@ -168,7 +175,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c4afcb7b2d2f48d10800000000000000
-      internalID: 2127091910865386060
+      internalID: 4139492099304113537
       vertices: []
       indices: 
       edges: []
@@ -189,7 +196,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 2fec64783d20d6420800000000000000
-      internalID: 2624757265357786866
+      internalID: -3316311176917755299
       vertices: []
       indices: 
       edges: []
@@ -204,9 +211,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      bullet_boss2_a_0: 1062314137845865055
+      bullet_boss2_a_1: -1367491792708970346
+      bullet_boss2_a_2: 4139492099304113537
+      bullet_boss2_a_3: -3316311176917755299
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

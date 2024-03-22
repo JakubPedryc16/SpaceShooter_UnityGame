@@ -7,14 +7,17 @@ public class EnemyHealth : MonoBehaviour {
     //public EnemySkill enemySkill;
 
     public float health = 100f;
-    public float colorBack = 0.1f;
+    public float maxHealth;
+    float colorBack = 0.1f;
     bool colorReseted;
     public int wallDmg = 1;
     public float heroDmg = 10f;
 
 
-    public float materialsChance = 0;
+
+    public float moneyChance = 0;
     public float itemChance = 0;
+    public float potionChance = 0;
     public int crystalsAmount = 1;
     public float pointsForHeroAbility;
     // float moneyGetChance = 0;
@@ -23,11 +26,14 @@ public class EnemyHealth : MonoBehaviour {
     GameMaster gameMaster;
     GameObject hero;
 
+    int lootChecked = 0;
+
     public delegate void EnemyEvent(GameObject enemyObject);
     public event EnemyEvent OnDeath;
 
     // Use this for initialization
     void Start () {
+        maxHealth = health;
         LoadStatistics();
         gameMaster = GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>();
         hero = GameObject.FindGameObjectWithTag("player");
@@ -115,36 +121,54 @@ public class EnemyHealth : MonoBehaviour {
 
         if (itemChance >= num0)
         {
-            int itemType = Random.Range(1, 4);
+            int itemType = Random.Range(0, 3);
             GameObject item = Resources.Load<GameObject>("Prefabs/Pickups/Items/Item" + itemType);
             item.transform.position = new Vector3(transform.position.x + Random.Range(0f, 0.5f), transform.position.y + Random.Range(0f, 0.5f));
             Instantiate(item);
         }
-        if (materialsChance >= num1 && GameObject.FindGameObjectWithTag("boss") == null)
-        { 
+        if (moneyChance >= num1 && GameObject.FindGameObjectWithTag("boss") == null && lootChecked == 0)
+        {
             int materialType = 0;
-            GameObject material = Resources.Load<GameObject>("Prefabs/Pickups/Materials/Material" + materialType);
+            float num3 = Random.Range(0f, 100f);
+            if(num3 <= 45)
+            {
+                materialType = 0;
+            }
+            else if (num3 <= 70)
+            {
+                materialType = 1;
+            }
+            else if (num3 <= 85)
+            {
+                materialType = 2;
+            }
+            else if (num3 <= 95)
+            {
+                materialType = 3;
+            }
+            else if (num3 < 100f)
+            {
+                materialType = 4;
+            }
+            GameObject material = Resources.Load<GameObject>("Prefabs/Pickups/Coins/Coin" + materialType);
             material.transform.position = new Vector3(transform.position.x + Random.Range(0f, 0.5f), transform.position.y + Random.Range(0f,0.5f));
             Instantiate(material);
 
         }
 
         float num = Random.Range(0f, 100f);
-        float actualAmount = 0f;
-        for (int i = 0; i < 3; i++)
+
+        if (enemyKind < 800)
         {
-            if (enemyKind < 800)
+            if (potionChance >= num)
             {
-                if (gameMaster.potionDropChances[enemyKind, i] + actualAmount >= num)
-                {
-                    GameObject item = Resources.Load<GameObject>("Prefabs/Pickups/Items/potion" + i);
-                    item.transform.position = new Vector3(transform.position.x + Random.Range(0f, 0.5f), transform.position.y + Random.Range(0f, 0.5f));
-                    Instantiate(item);
-                    break;
-                }
-                actualAmount += gameMaster.potionDropChances[enemyKind, i];
+                GameObject item = Resources.Load<GameObject>("Prefabs/Pickups/Items/potion" + Random.Range(0,2));
+                item.transform.position = new Vector3(transform.position.x + Random.Range(0f, 0.5f), transform.position.y + Random.Range(0f, 0.5f));
+                Instantiate(item);
             }
+
         }
+        lootChecked = 1;
 
     }
     public void LoadStatistics()

@@ -22,11 +22,13 @@ public class GameMasterCustomization : MonoBehaviour {
     };
     string[] spellInfos = new string[3]
     {
-        "Mystic Knives\nImmidiately shoots three knives\nMana: "+ Informations.spellManaCost[0] + "\nCooldown: "+ Informations.spellCooldown[0],"Rage\nshoots many bullets with low accuraty\nMana: "+ Informations.spellManaCost[1] + "\nCooldown: "+ Informations.spellCooldown[1],"Freeze Bomb\nshoots a missile that explode and freeze enemies\nMana: "+ Informations.spellManaCost[2] + "\nCooldown: "+ Informations.spellCooldown[2]
+        "Mystic Knives\nImmidiately shoots three knives\nMana:"  + "\nCooldown: "+ Informations.spellCooldown[0],"Rage\nshoots many bullets with low accuraty\nMana: "
+        + "\nCooldown: "+ Informations.spellCooldown[1],"Freeze Bomb\nshoots a missile that explode and freeze enemies\nMana: " + "\nCooldown: "+ Informations.spellCooldown[2]
     };
     string[] abilityInfos = new string[3]
     {
-        "Haste\nYou move and shoot faster for few seconds\nMana: "+ Informations.abilityManaCost[0] + "\nCooldown: "+ Informations.abilityCooldown[0],"Magic Missiles\nshoots additional tracking bullets\nMana: "+ Informations.abilityManaCost[1] + "\nCooldown: "+ Informations.abilityCooldown[1],"Circle Attacks\nshoots bullets around you for a few seconds\nMana "+ Informations.abilityManaCost[2] + "\nCooldown: "+ Informations.abilityCooldown[2]
+        "Haste\nYou move and shoot faster for few seconds\nMana: " + "\nCooldown: "+ Informations.abilityCooldown[0],"Magic Missiles\nshoots additional tracking bullets\nMana: "
+        + "\nCooldown: "+ Informations.abilityCooldown[1],"Circle Attacks\nshoots bullets around you for a few seconds\nMana " + "\nCooldown: "+ Informations.abilityCooldown[2]
     };
     public Text actualBulletInfo;
 	// Use this for initialization

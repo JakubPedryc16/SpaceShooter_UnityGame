@@ -9,7 +9,6 @@ public class Informations {
     public static bool firstMenuLoaded = false;
     public static int straightToPDA = 0;
 
-
     public static int[] statistics = new int[]
     {
         0,  //chapterNum            0
@@ -48,12 +47,12 @@ public class Informations {
         false,
         false,
         false,
-        true
+        false // final version is true but now false for tests
 };
     public static bool[] questLockedBullets = new bool[]
     {
         false,
-        true,
+        false // final version is true but now false for tests
     };
     public static bool[] abilitiesUnlocked = new bool[]
     {
@@ -65,7 +64,7 @@ public class Informations {
 {
         false,
         false,
-        true
+        false // final version is true but now false for tests
 };
     public static bool[] spellsUnlocked = new bool[]
 {
@@ -77,7 +76,7 @@ public class Informations {
 {
         false,
         false,
-        true
+        false // final version is true but now false for teststrue
 };
     public static bool[] enemiesUnlocked = new bool[]
     {
@@ -91,28 +90,37 @@ public class Informations {
         false,
         false,
         false,
-        false   //num:10 amount:11
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false   //num:19 amount:20
     };
     public class UpgradesMultiplier
     {
         public float[] cooldownMultiplier;
         public float[] damageMultiplier;
         public float[] healthMultiplier;
-        public float[] manaMultiplier;
+        public float[] magicDamage;
 
-        public UpgradesMultiplier(float[] _cooldownMultiplier, float[] _damageMultiplier, float[] _healthMultiplier, float[] _manaMultiplier)
+        public UpgradesMultiplier(float[] _cooldownMultiplier, float[] _damageMultiplier, float[] _healthMultiplier, float[] _magicDamage)
         {
             cooldownMultiplier = _cooldownMultiplier;
             damageMultiplier = _damageMultiplier;
             healthMultiplier = _healthMultiplier;
-            manaMultiplier = _manaMultiplier;
+            magicDamage = _magicDamage;
         }
     }
     public static UpgradesMultiplier upgradesAmount = new UpgradesMultiplier(
         new float[12] { 1f, 0.95f, 0.9f, 0.85f, 0.8f, 0.75f, 0.7f, 0.67f, 0.64f, 0.62f, 0.6f, 0.55f },
-        new float[12] { 1f, 1.2f, 1.4f, 1.5f, 1.7f, 1.85f, 2f, 2.15f, 2.3f, 2.45f, 2.6f, 3f },
+        new float[12] { 1f, 1.2f, 1.4f, 1.55f, 1.7f, 1.85f, 2f, 2.15f, 2.3f, 2.45f, 2.6f, 3f },
         new float[12] { 1f, 1.2f, 1.4f, 1.5f, 1.6f, 1.7f, 1.8f, 1.9f, 2f, 2.1f, 2.2f, 2.5f },
-        new float[12] { 1f, 1.1f, 1.2f, 1.3f, 1.4f, 1.5f, 1.6f, 1.7f, 1.8f, 1.85f, 1.9f, 2f }
+        new float[12] { 1f, 1.2f, 1.4f, 1.55f, 1.7f, 1.85f, 2f, 2.15f, 2.3f, 2.45f, 2.6f, 3f }
         );
 
     public static int[] prices = new int[]
@@ -135,21 +143,23 @@ public class Informations {
     {
         0,0,100
     };
+    /*
     public static float[] spellManaCost = new float[3]
     {
             9f,13f,9f,
     };
+    */
     public static float[] spellCooldown = new float[3]
     {
-            1.6f,6f,2.5f
+            3f,12f,14f
     };
-    public static float[] abilityManaCost = new float[3]
+    /*public static float[] abilityManaCost = new float[3]
         {
             4f,8f,14f,
-        };
+        };*/
     public static float[] abilityCooldown = new float[3]
     {
-            18f,18f,12f
+            22f,18f,15f
     };
     public static float[] specialAbilityPointsNeeded = new float[4]
     {
@@ -179,10 +189,10 @@ public class Informations {
             new DifficultyStats (
                 _enemyHealthMultiplier: 1.2f,
                 _enemyMovementSpeedMultiplier: 1.06f,
-                _enemyDamageMultiplier: 1.2f,
+                _enemyDamageMultiplier: 1f,
                 _enemyBulletSpeedMultiplier: 1.2f,
                 _enemyAbilityCooldownsMultiplier: 1.35f,
-                _bossDamageMultiplier: 1.1f,
+                _bossDamageMultiplier: 1f,
                 _bossCooldownsMultiplier: 0.75f,
                 _bossHealthMultiplier: 1.2f,
                 _additionalBossMoves: 2,

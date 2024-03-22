@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class HeroControl : MonoBehaviour {
 
-    public float friction;
+    public float friction = 1f;
     public float acceleration;
+    //public float fatigue = 1;
 
     GameMaster gm;
 
@@ -22,11 +23,11 @@ public class HeroControl : MonoBehaviour {
     // Use this for initialization
     void Start () {
         gm = GameObject.FindGameObjectWithTag("gameMaster").GetComponent<GameMaster>();
-        GetComponent<HeroControl>().acceleration = Characters.characters[Informations.statistics[3]].movementSpeed;// * Characters.charactersUpgrades.movementSpeed;
+        acceleration = Characters.characters[Informations.statistics[3]].movementSpeed;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         if (transform.position.x < -7.264f)
@@ -50,45 +51,32 @@ public class HeroControl : MonoBehaviour {
         if (Input.GetKey(moveUp))
         {
             speedy += acceleration;
-            if (force > 0.9f)
-            {
-                force -= 0.1f;
-            }
+            force -= 0.14f;
         }
         if (Input.GetKey(moveDown))
         {
             speedy -= acceleration;
-            if (force > 0.9f)
-            {
-                force -= 0.1f;
-            }
-
+            force -= 0.14f;
         }
         if (Input.GetKey(moveRight))
         {
             speedx += acceleration;
-            if (force > 0.8f)
-            {
-                force -= 0.1f;
-            }
-
+            force -= 0.14f;
         }
         if (Input.GetKey(moveLeft))
         {
             speedx -= acceleration;
-            if (force > 0.8f)
-            {
-                force -= 0.1f;
-            }
-
+            force -= 0.14f;
         }
 
         speedx *= friction;
         speedy *= friction;
+        //fatigue = System.Math.Clamp(fatigue + 0.005f, 0.5f, 1f);
 
-        transform.position = new Vector2(transform.position.x + speedx * (Time.deltaTime + (Time.deltaTime / gm.tempoMeter)) * 0.5f * force, transform.position.y + speedy * (Time.deltaTime + (Time.deltaTime / gm.tempoMeter)) * 0.5f * force);
-        //transform.position = new Vector2(transform.position.x + speedx * Time.deltaTime * force, transform.position.y + speedy * Time.deltaTime * force);
+        transform.position = new Vector2(transform.position.x + speedx * 0.025f * force, transform.position.y + speedy * 0.025f * force);
         force = 1f;
+
+        //fatigue = System.Math.Clamp(fatigue + 0.001f, 0.5f, 1f);
     }
     /*Vector2 PixelPerfectMovement(Vector2 moveVector, float pixelsPerUnit)
     {

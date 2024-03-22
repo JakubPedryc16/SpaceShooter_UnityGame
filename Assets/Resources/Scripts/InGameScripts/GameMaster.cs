@@ -7,7 +7,7 @@ public class GameMaster : MonoBehaviour {
 
     public float tempoMeter = 1f;
     float timeLeftToChangeMeter;
-    public float timeToChangeMeter = 8f;
+    public float timeToChangeMeter = 15f;
     public float timeMeterLimits = 1.75f;
 
     public float actualTimeModulations;
@@ -20,7 +20,7 @@ public class GameMaster : MonoBehaviour {
     public bool dontUPauseIt = false;
     public GameObject youWinObject;
     public Text firstTimeBossKillText;
-    public int wallHealth = 4;
+    public int wallHealth = 5;
     public int moneyStatus;
     //public int lastMoney;
     public GameObject moneyText;
@@ -70,7 +70,7 @@ public class GameMaster : MonoBehaviour {
         else if(tempoMeter < timeMeterLimits && stopTime == false)
         {
             timeLeftToChangeMeter = timeToChangeMeter;
-            tempoMeter = Mathf.Clamp(tempoMeter + 0.03f,1f,timeMeterLimits);
+            tempoMeter = Mathf.Clamp(tempoMeter + 0.05f,1f,timeMeterLimits);
             RefreshTime();
         }
         if (timeToDisappear >= 0)
@@ -122,7 +122,7 @@ public class GameMaster : MonoBehaviour {
         Characters.charactersUpgrades.cooldown = Informations.upgradesAmount.cooldownMultiplier[Informations.upgrades[1]];
         Characters.charactersUpgrades.damage = Informations.upgradesAmount.damageMultiplier[Informations.upgrades[2]];
         Characters.charactersUpgrades.health = Informations.upgradesAmount.healthMultiplier[Informations.upgrades[0]];
-        Characters.charactersUpgrades.mana = Informations.upgradesAmount.manaMultiplier[Informations.upgrades[1]];
+        //Characters.charactersUpgrades.mana = Informations.upgradesAmount.manaMultiplier[Informations.upgrades[1]];
     }
     public void YouWin()
     {
@@ -156,19 +156,7 @@ public class GameMaster : MonoBehaviour {
         EarnMoney((int)((moneyStatus * (time / TMtime)) - moneyStatus));
         YouLostObject.SetActive(true);
     }
-    public float[,] potionDropChances = new float[11, 3] { //mana health power
-        { 0f, 0f, 0f},         //normal
-        { 1f, 0.5f, 0.5f},      //normal + health
-        { 1f, 0.5f, 0.5f},      //shooting
-        { 2.5f, 1f, 1f},        //shooting + sniper
-        { 2.5f, 1f, 1.5f},        //normal + charge
-        { 5f, 1.5f, 2f},        //summonter
-        { 8f, 2f, 4f},        //big guardian
-        { 1f, 0.5f, 0.5f},      //frozen guard?
-        { 2f, 1f, 1f},      //frozen shielded guard?
-        { 2f, 1f, 1.5f},      //frozen guard + spread shoot?
-        { 1f, 1f, 1f}       //frozen guard?
-        };
+
     public float[,] bossRewards = new float[4, 5]
     {
         {500f,2f,4f,3f,3f}, //money, characters, bullet, spell, ability

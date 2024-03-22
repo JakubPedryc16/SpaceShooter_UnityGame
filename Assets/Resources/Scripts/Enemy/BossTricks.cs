@@ -20,6 +20,7 @@ public class BossTricks : MonoBehaviour {
     int num;
     int num1;
     float multiplier;
+    float lowHealthBuff;
 
     public GameObject spawnPoint;
     float cooldown;
@@ -47,7 +48,7 @@ public class BossTricks : MonoBehaviour {
         screenSize = new Vector3(Screen.width, Screen.height, 0f);
         screenPosition = Camera.main.ScreenToWorldPoint(screenSize);
         transform.position = basicPosition;
-        bullet = Resources.Load<GameObject>("Prefabs/Bullets_Boss/Bullet0" + alternativeString);
+        bullet = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_Boss/Bullet0" + alternativeString);
         attacksNum = Random.Range(0, attacks.Length);
 
     }
@@ -100,21 +101,21 @@ public class BossTricks : MonoBehaviour {
             case 1:
                 PositionTop();
                 moveNum++;
-                ShootAround(0f,3f,20);
+                ShootAround(0f,4f,16);
                 multiplier = 1f;
                 break;
             case 2:
                 MoveToPosition(2.8f);
                 if (cooldown <= 0f)
                 {
-                    ShootLeftRandom(16f, 6f * multiplier * weakeningMultiplier, 1,2);
+                    ShootLeftRandom(16f, 7f * multiplier * weakeningMultiplier, 1,2);
                     FindObjectOfType<AudioManager>().Play("EnemyShotSound0");
-                    cooldown = 0.19f / multiplier / weakeningMultiplier * Informations.difficultyStats[Informations.statistics[5]].bossCooldownsMultiplier;
+                    cooldown = 0.25f / multiplier / weakeningMultiplier * Informations.difficultyStats[Informations.statistics[5]].bossCooldownsMultiplier;
                     multiplier += 0.005f;
                 }
                 if (transform.position == wantedPosition)
                 {
-                    ShootAround(0f,3f,20);
+                    ShootAround(0f,3f,16);
                     moveNum++;
                     PositionBot();
                 }
@@ -123,14 +124,14 @@ public class BossTricks : MonoBehaviour {
                 MoveToPosition(3.2f);
                 if (cooldown <= 0f)
                 {                   
-                    ShootLeftRandom(17f,7.5f * multiplier * weakeningMultiplier, 1,2);
+                    ShootLeftRandom(16f,8.5f * multiplier * weakeningMultiplier, 1,2);
                     FindObjectOfType<AudioManager>().Play("EnemyShotSound0");
-                    cooldown = 0.16f / multiplier / weakeningMultiplier* Informations.difficultyStats[Informations.statistics[5]].bossCooldownsMultiplier;
+                    cooldown = 0.23f / multiplier / weakeningMultiplier* Informations.difficultyStats[Informations.statistics[5]].bossCooldownsMultiplier;
                     multiplier += 0.001f;
                 }
                 if (transform.position == wantedPosition)
                 {
-                    ShootAround(30f, 3f, 25);
+                    ShootAround(30f, 5f, 20);
                     moveNum++;
                 }
 
@@ -152,19 +153,19 @@ public class BossTricks : MonoBehaviour {
             case 1:
                 moveNum++;
                 PositionPlayer();
-                ShootAround(0f, 4f,20);
+                ShootAround(0f, 5f,16);
                 if (Informations.statistics[5] == 2)
                 {
                     ShootAround(10f, 3f, 26);
                 }
                 break;
             case 2:
-                MoveToPosition(6.5f * Informations.difficultyStats[Informations.statistics[5]].enemyBulletSpeedMultiplier);
+                MoveToPosition(7f * Informations.difficultyStats[Informations.statistics[5]].enemyBulletSpeedMultiplier);
                 if (Vector3.Distance(transform.position, wantedPosition) < 3f && swing == false)
                 {
                     anim.Play("swing");
                     Invoke("SwingSword", 0.11f);
-                    ShootLeft(10f, 6.5f * Informations.difficultyStats[Informations.statistics[5]].enemyBulletSpeedMultiplier, 10,2);
+                    ShootLeft(10f, 8f * Informations.difficultyStats[Informations.statistics[5]].enemyBulletSpeedMultiplier, 10,2);
                     swing = true;
                 }
                 if (transform.position == wantedPosition)
@@ -181,7 +182,7 @@ public class BossTricks : MonoBehaviour {
                 {
                     if (Informations.statistics[5] == 2)
                     {
-                        ShootAround(10f, 2f, 30);
+                        ShootAround(10f, 3f, 24);
                         
                     }
                     EndOfAbility();
@@ -205,12 +206,12 @@ public class BossTricks : MonoBehaviour {
                     case 1:
                         if (cooldown <= 0f)
                         {
-                            ShootAround(0f, 4f,20);
+                            ShootAround(0f, 3f,16);
                             cooldown = 1.5f;
                             shootnum = 2;
                             if (Informations.statistics[5] == 2)
                             {
-                                ShootLeftSmall(4f, 6f, 5, Random.Range(-25f, 25f), 2);
+                                ShootLeftSmall(4f, 7f, 5, Random.Range(-25f, 25f), 2);
                             }
                         }
 
@@ -220,7 +221,7 @@ public class BossTricks : MonoBehaviour {
                         {
                             anim.Play("swing");
                             Invoke("SwingSword", 0.11f);
-                            ShootAround(10f, 4f,25);
+                            ShootAround(10f, 3f,22);
                             cooldown = 1.5f;
                             shootnum = 1;
                         }
@@ -230,14 +231,14 @@ public class BossTricks : MonoBehaviour {
                 }
                 if (transform.position == wantedPosition)
                 {
-                    ShootAround(30f, 5f,20);
+                    ShootAround(30f, 5f,16);
                     moveNum++;
                 }
                 else if (stop > 99.5f)
                 {
                     if (Informations.statistics[5] == 2)
                     {
-                        ShootAround(30f, 5f, 20);
+                        ShootAround(30f, 6f, 16);
                     }
                     moveNum++;
                 }
@@ -248,7 +249,7 @@ public class BossTricks : MonoBehaviour {
                 ComeBack(3f);
                 if (transform.position == basicPosition)
                 {
-                    ShootAround(30f, 5f, 39);
+                    ShootAround(30f, 6f, 32);
                     EndOfAbility();
                 }
                 break;
@@ -270,7 +271,7 @@ public class BossTricks : MonoBehaviour {
                 SummonEnemies(3 + Informations.difficultyStats[Informations.statistics[5]].additionalBossMoves, new int[2] { 0, 0 });
                 PositionTop();
                 moveNum++;
-                ShootAround(10f,1.5f,15);
+                ShootAround(10f,2f,12);
                 break;
             case 2:
                 MoveToPosition(5f);
@@ -279,7 +280,7 @@ public class BossTricks : MonoBehaviour {
                     SummonEnemies(2, new int[2] { 0, 2 + Informations.difficultyStats[Informations.statistics[5]].additionalBossMoves});
                     moveNum++;
                     PositionBot();
-                    ShootAround(0f,2.5f,20);
+                    ShootAround(0f,3f,16);
                 }
                 break;
             case 3:
@@ -291,7 +292,7 @@ public class BossTricks : MonoBehaviour {
                         SummonEnemies(2, new int[2] { 0, 3 + Informations.difficultyStats[Informations.statistics[5]].additionalBossMoves });
                     }
                     moveNum++;
-                    ShootAround(10f,4f,25);
+                    ShootAround(10f,4f,2);
 
                 }
                 break;
@@ -326,7 +327,7 @@ public class BossTricks : MonoBehaviour {
                         {
                             anim.Play("swing");
                             Invoke("SwingSword", 0.11f);
-                            ShootLeft(22f, 5.6f, 7,2);
+                            ShootLeft(22f, 5.5f, 6,2);
                             attackTimeLeft = 0.6f / multiplier;
                             num++;
                             multiplier += 0.15f;
@@ -335,7 +336,7 @@ public class BossTricks : MonoBehaviour {
                             {
                                 if(Informations.statistics[5] == 2)
                                 {
-                                    ShootLeftMystic(8f, 3.5f, 8);
+                                    ShootLeftMystic(8f, 4.5f, 7);
                                 }
                                 moveNum++;
                                 num = 0;
@@ -356,7 +357,7 @@ public class BossTricks : MonoBehaviour {
                             {
                                 if (Informations.statistics[5] == 2)
                                 {
-                                    ShootLeftMystic(8f, 3.5f, 6);
+                                    ShootLeftMystic(8f, 4.5f, 6);
                                 }
                                 moveNum++;
                                 num = 0;
@@ -373,10 +374,10 @@ public class BossTricks : MonoBehaviour {
                     {
                         anim.Play("swing");
                         Invoke("SwingSword", 0.11f);
-                        ShootLeftMystic(18f, 3.5f, 7 + Mathf.Clamp(Informations.difficultyStats[Informations.statistics[5]].additionalBossMoves,-1,1));
+                        ShootLeftMystic(18f, 4.5f, 5 + Mathf.Clamp(Informations.difficultyStats[Informations.statistics[5]].additionalBossMoves,-1,1));
                         if (Informations.statistics[5] == 2)
                         {
-                            ShootAround(10f, 3f, 20);
+                            ShootAround(10f, 3f, 16);
                         }
                         EndOfAbility();
                         num1 = 0;
@@ -394,7 +395,7 @@ public class BossTricks : MonoBehaviour {
                 PositionRandom();
                 moveNum++;
                 attackTimeLeft = 0.5f;
-                ShootAround(0f, 2f,20);
+                ShootAround(0f, 3f,16);
                 multiplier = 1f;
                 break;
             case 2:
@@ -403,7 +404,7 @@ public class BossTricks : MonoBehaviour {
                 {
                     anim.Play("swing");
                     Invoke("SwingSword", 0.11f);
-                    ShootLeftSmall(22.5f, 4f * multiplier * weakeningMultiplier, 5, Random.Range(-25f, 25f),3);
+                    ShootLeftSmall(24f, 4.5f * multiplier * weakeningMultiplier, 5, Random.Range(-25f, 25f),3);
                     attackTimeLeft = Random.Range(0.6f, 0.8f * Informations.difficultyStats[Informations.statistics[5]].bossCooldownsMultiplier);
                     num++;
                     multiplier += 0.1f;
@@ -422,7 +423,7 @@ public class BossTricks : MonoBehaviour {
                     {
                         if (Informations.statistics[5] == 2)
                         {
-                            ShootAround(10f, 3f, 20);
+                            ShootAround(10f, 2f, 20);
                         }
                         EndOfAbility();
                     }
@@ -453,14 +454,14 @@ public class BossTricks : MonoBehaviour {
                         {
                             anim.Play("swing");
                             Invoke("SwingSword", 0.11f);
-                            ShootLeft(22f, 4f * multiplier, 6,0);
+                            ShootLeft(22f, 4.5f * multiplier, 4,0);
                             attackTimeLeft = 0.75f;
                             num++;
                             multiplier += 0.15f;
                             num1 = 1;
                             if (num >= 4 + Informations.difficultyStats[Informations.statistics[5]].additionalBossMoves)
                             {
-                                ShootLeft(4f, 6f * Informations.difficultyStats[Informations.statistics[5]].enemyBulletSpeedMultiplier, 4,2);
+                                ShootLeft(4f, 5f * Informations.difficultyStats[Informations.statistics[5]].enemyBulletSpeedMultiplier, 3,2);
                                 moveNum++;
                                 num = 0;
                             }
@@ -471,20 +472,20 @@ public class BossTricks : MonoBehaviour {
                         {
                             anim.Play("swing");
                             Invoke("SwingSword", 0.11f);
-                            ShootLeft(22f, 4f * multiplier, 5,0);
+                            ShootLeft(22f, 5f * multiplier, 4,0);
                             attackTimeLeft = 0.75f;
                             num++;
                             multiplier += 0.15f;
                             num1 = 0;
                             if (num >= 4 + Informations.difficultyStats[Informations.statistics[5]].additionalBossMoves)
                             {
-                                ShootLeft(15f, 2.5f, 8 + Informations.difficultyStats[Informations.statistics[5]].additionalBossMoves , 1);
+                                ShootLeft(12f, 3.5f, 6 + Informations.difficultyStats[Informations.statistics[5]].additionalBossMoves , 1);
                                 moveNum++;
                                 num = 0;
                             }
                             if (Informations.statistics[5] == 2)
                             {
-                                ShootLeftSmall(4f, 6f, 5, Random.Range(-25f, 25f), 2);
+                                ShootLeftSmall(4f, 6f, 4, Random.Range(-25f, 25f), 2);
                             }
                         }
                         break;
@@ -498,7 +499,7 @@ public class BossTricks : MonoBehaviour {
                     {
                         if (Informations.statistics[5] == 2)
                         {
-                            ShootAround(10f, 3f, 20);
+                            ShootAround(10f, 4f, 16);
                         }
                         EndOfAbility();
                         num1 = 0;
@@ -514,7 +515,7 @@ public class BossTricks : MonoBehaviour {
     }
     public void ShootAround(float startPosition,float speed,int amount)
     {
-        bullet = Resources.Load<GameObject>("Prefabs/Bullets_Boss/Bullet0" + alternativeString);
+        bullet = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_Boss/Bullet0" + alternativeString);
         bullet.GetComponent<EnemyBulletMobility>().speed = speed;
         for (float i = -180 + startPosition; i < 180 + startPosition; i += 360/amount)
         {
@@ -526,7 +527,7 @@ public class BossTricks : MonoBehaviour {
     }
     public void ShootLeftRandom(float range, float speed, int count, int type)
     {
-        bullet = Resources.Load<GameObject>("Prefabs/Bullets_Boss/Bullet" + type + alternativeString);
+        bullet = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_Boss/Bullet" + type + alternativeString);
         bullet.GetComponent<EnemyBulletMobility>().speed = speed;
         for (float i = 0; i < count; i++)
         {
@@ -538,7 +539,7 @@ public class BossTricks : MonoBehaviour {
     }
         public void ShootLeft(float range, float speed, int count, int type)
     {
-        bullet = Resources.Load<GameObject>("Prefabs/Bullets_Boss/Bullet" + type + alternativeString);
+        bullet = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_Boss/Bullet" + type + alternativeString);
         bullet.GetComponent<EnemyBulletMobility>().speed = speed;
         for (float i = range; i >= -range; i -= (range * 2) / (count -1f) )
         {
@@ -550,7 +551,7 @@ public class BossTricks : MonoBehaviour {
     }
     public void ShootLeftMystic(float range, float speed, int count)
     {
-        bullet = Resources.Load<GameObject>("Prefabs/Bullets_Boss/Bullet1" + alternativeString);
+        bullet = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_Boss/Bullet1" + alternativeString);
         bullet.GetComponent<EnemyBulletMobility>().speed = speed;
         for (float i = range; i >= -range; i -= (range * 2) / (count - 1f))
         {
@@ -562,7 +563,7 @@ public class BossTricks : MonoBehaviour {
     }
     public void ShootLeftSmall(float range, float speed, int count, float direction,int type)
     {
-        bullet = Resources.Load<GameObject>("Prefabs/Bullets_Boss/Bullet" + type + alternativeString);
+        bullet = Resources.Load<GameObject>("Prefabs/Bullets/Bullets_Boss/Bullet" + type + alternativeString);
         bullet.GetComponent<EnemyBulletMobility>().speed = speed;
         for (float i = range; i >= -range; i -= (range * 2) / (count - 1f))
         {
@@ -582,7 +583,8 @@ public class BossTricks : MonoBehaviour {
     }
     public void PositionRandom()
     {
-        wantedPosition = new Vector3(Random.Range(-screenPosition.x + 0.5f, screenPosition.x - 0.5f), Random.Range(-screenPosition.y + 0.5f, screenPosition.y - 0.5f));
+        wantedPosition = new Vector3(Random.Range(-screenPosition.x + 0.5f, screenPosition.x - 0.5f), 
+            Random.Range(-screenPosition.y + 0.5f, screenPosition.y - 0.5f));
     }
     public void PositionPlayer()
     {
@@ -600,7 +602,7 @@ public class BossTricks : MonoBehaviour {
     {
         for (int i = 0; i < amount; i++)
         {
-            float enemyPosition = Random.Range(-3.9f, 3.9f);
+            float enemyPosition = Random.Range(-2.5f, 2.5f);
             GameObject enemy = Resources.Load<GameObject>("Prefabs/Enemies/Enemy" + Random.Range(types[0], types[1]));
             enemy.transform.position = new Vector3(8.7f, enemyPosition);
             Instantiate(enemy);
@@ -608,6 +610,21 @@ public class BossTricks : MonoBehaviour {
     }
     public void EndOfAbility()
     {
+
+        if (transform.GetComponent<BossScript>().health / transform.GetComponent<BossScript>().startHealth > 60)
+        {}
+        else if (transform.GetComponent<BossScript>().health / transform.GetComponent<BossScript>().startHealth <= 60)
+        {
+            lowHealthBuff = 0.9f;
+        }
+        else if (transform.GetComponent<BossScript>().health / transform.GetComponent<BossScript>().startHealth < 30)
+        {
+            lowHealthBuff = 0.75f;
+        }
+        else if (transform.GetComponent<BossScript>().health / transform.GetComponent<BossScript>().startHealth < 15)
+        {
+            lowHealthBuff = 0.6f;
+        }
         int lastAttacksNum = attacksNum;
         attacksFromRest++;
         moveNum = 1;
@@ -615,29 +632,14 @@ public class BossTricks : MonoBehaviour {
         {
             attacksNum = Random.Range(0, attacks.Length);
         }
-        if (this.GetComponent<BossScript>().health > this.GetComponent<BossScript>().startHealth * 0.33f)
+        if (attacksFromRest <= 3)
         {
-            if (attacksFromRest <= 3)
-            {
-                _attacksCooldown = attacksCooldown;
-            }
-            else
-            {
-                _attacksCooldown = bossRestingTime;
-                attacksFromRest = 0;
-            }
+            _attacksCooldown = attacksCooldown * lowHealthBuff;
         }
         else
         {
-            if (attacksFromRest <= 5)
-            {
-                _attacksCooldown = attacksCooldown * 0.6f;
-            }
-            else
-            {
-                _attacksCooldown = bossRestingTime;
-                attacksFromRest = 0;
-            }
+            _attacksCooldown = bossRestingTime * lowHealthBuff * lowHealthBuff;
+            attacksFromRest = 0;
         }
     }
 
